@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic page setup -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Linking external CSS files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normlize.css">
+</head>
+
+<body>
+
+    <!-- Scroll progress bar at the top -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    </div>
+    <!-- Website header with logo and navigation menu -->
+    <header>
+        <a href="#" class="logo">Portfolio</a>
+        <!-- Toggle menu button for mobile view -->
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <!-- Navigation bar with page links -->
+        <nav class="navbar">
+            <a href="#home" class="active" style="--i:1;">Home</a>
+            <a href="#about" style="--i:2;">About Me</a>
+            <a href="#skills" style="--i:3;">My Skills</a>
+            <a href="#education-experience" style="--i:4;">Education & Experience</a>
+            <a href="#projects" style="--i:5;">Projects</a>
+            <a href="#customers" style="--i:6;">My Customers</a>
+            <a href="#contact" style="--i:7;">Contact Us</a>
+
+            <!-- Dark mode toggle icon -->
+            <div class="theme-switcher">
+                <i class="fa-solid fa-moon" id="themeToggle"></i>
+            </div>
+
+
+        </nav>
+
+    </header>
+    <!-- Home section with introduction -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hello, Its Me</h3>
+            <h1>Raed Al-Hallaq</h1>
+            <h3>And, I'm a <span id="typewriter-job"></span><span class="cursor">|</span></h3>
+            <p>I,m a Web Designer with extensive experience for over 3 years. <br>
+                expertise is to create and website design, Frontend design , and many more....
+            </p>
+            <!-- Social media icons -->
+            <div class="home-sec">
+                <a href="#" style="--i:9;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" style="--i:10;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="--i:11;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" style="--i:12;"><i class="fab fa-twitter"></i></a>
+            </div>
+            <a class="btn-box" href="#">More About Me </a>
+        </div>
+        <!-- Profile image -->
+        <div class="image">
+            <img src="images/1749667331815.jpg" alt="Avatar" id="avatar">
+        </div>
+    </section>
+    <!-- About Me section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <!-- Profile picture on the left side -->
+            <img src="images/1749667331815.jpg" class="about-img-animation">
+        </div>
+
+        <div class="about-text">
+            <h2>About<span>Me</span></h2>
+            <h4>Full Stack developer!</h4>
+            <p id="bioText">
+                Passionate about building and developing comprehensive web applications, from the front-end to the
+                back-end.
+            </p>
+            <!-- Button to show more text -->
+
+            <button id="readMoreBtn" class="btn-box " type="button">Read More</button>
+
+            <!-- Button to download resume file -->
+
+            <a class="btn-box" id="downloadResumeBtn" href="Final-Project.pdf" download="My_Resume.pdf">
+                Download Resume
+            </a>
+        </div>
+
+    </section>
+    <!-- Skills section -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h1 class="sub-title">My <span>Skills</span></h1>
+            <div class="skills-content-wrapper">
+                <!-- Left side: technical skills with progress bars -->
+                <div class="skills-left-side">
+                    <h2 class="skills-heading">Technical Skills</h2>
+                    <div class="skills-list">
+                        <!-- Each skill item shows icon, name, percentage, and a progress bar -->
+                        <!-- Example: HTML, CSS, JavaScript, etc. -->
+                        <div class="skill-item" data-attr="90" style="--progress: 90;">
+                            <div class="skill-header">
+                                <i style="color: #e34f26;" class="fab fa-html5"></i>
+                                <span>HTML</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="progress-bar" data-tooltip="90%">
+                                <div class="progress-line"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-attr="80" style="--progress: 80;">
+                            <div class="skill-header">
+                                <i style="color: #1572b6;" class="fab fa-css3-alt"></i>
+                                <span>CSS</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="progress-bar" data-tooltip="80%">
+                                <div class="progress-line"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-attr="75" style="--progress: 75;">
+                            <div class="skill-header">
+                                <i style="color: #f7df1e;" class="fab fa-js-square"></i>
+                                <span>JavaScript</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="progress-bar" data-tooltip="75%">
+                                <div class="progress-line"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-attr="65" style="--progress: 65;">
+                            <div class="skill-header">
+                                <i style="color: #3776ab;" class="fab fa-python"></i>
+                                <span>Python</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="progress-bar" data-tooltip="65%">
+                                <div class="progress-line"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-attr="70" style="--progress: 70;">
+                            <div class="skill-header">
+                                <i style="color: #61dafb;" class="fab fa-react"></i>
+                                <span>React</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="progress-bar" data-tooltip="70%">
+                                <div class="progress-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right side: description of professional abilities -->
+
+                <div class="skills-right-side">
+                    <h2 class="skills-right-heading">My Professional Journey & Abilities</h2>
+                    <p class="skills-description">
+                        With a passion for crafting engaging and efficient web experiences, I possess a strong
+                        foundation in
+                        both front-end and back-end technologies. My expertise spans across responsive design,
+                        interactive
+                        UIs, and robust server-side logic. I am constantly learning and adapting to new technologies to
+                        deliver high-quality solutions.
+                    </p>
+                    <!-- Contact link using mailto -->
+                    <a href="mailto:your-email@example.com?subject=Inquiry from your Portfolio" class="btn-box ">Contact
+                        Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Education & Experience section (Timeline) -->
+    <section class="education-experience" id="education-experience">
+        <h2 class="heading">My <span>Journey</span></h2>
+
+        <div class="timeline-container">
+            <!-- Each timeline item represents a degree or a job experience -->
+            <!-- Includes title, institution/company, description and bullet points -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Graduation 2025 - B.Sc. in Computer Science</h3>
+                    <p>The Islamic University, Gaza, Palstine</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>High School Diploma 2021</h3>
+                    <p>Elkarmel High School, Gaza, Palstine</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Web Developer Intern (2024 - Present)</h3>
+                    <p>Tech Solutions Inc.</p>
+                    <ul>
+                        <li>Assisted in front-end development using HTML, CSS, JavaScript.</li>
+                        <li>Collaborated with team on various web projects.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Freelance Designer (2023 - 2024)</h3>
+                    <p>Self-employed</p>
+                    <ul>
+                        <li>Designed responsive websites and user interfaces for clients.</li>
+                        <li>Utilized graphic design tools for branding projects.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects section -->
+    <section class="projects-section" id="projects">
+        <h2 class="heading">My <span>Projects</span></h2>
+
+        <div class="projects-container">
+            <!-- Each project-card includes image, title, description, tech stack, and a view button -->
+            <!-- Example projects: e-commerce website, portfolio site, blog platform, etc. -->
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 1">
+                <div class="project-info">
+                    <h3>E-commerce Website</h3>
+                    <p>A full-stack e-commerce platform built with React and Node.js.</p>
+                    <div class="tech-stack">
+                        <span>#React</span>
+                        <span>#Node.js</span>
+                        <span>#MongoDB</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 2">
+                <div class="project-info">
+                    <h3>Portfolio Website</h3>
+                    <p>Personal portfolio showcasing skills and projects using HTML, CSS, JS.</p>
+                    <div class="tech-stack">
+                        <span>#HTML</span>
+                        <span>#CSS</span>
+                        <span>#JavaScript</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 3">
+                <div class="project-info">
+                    <h3>Mobile App Design</h3>
+                    <p>UI/UX design for a recipe sharing mobile application.</p>
+                    <div class="tech-stack">
+                        <span>#Figma</span>
+                        <span>#UI/UX</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 4">
+                <div class="project-info">
+                    <h3>Blog Platform</h3>
+                    <p>A responsive blog platform with admin panel functionality.</p>
+                    <div class="tech-stack">
+                        <span>#PHP</span>
+                        <span>#MySQL</span>
+                        <span>#Bootstrap</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 5">
+                <div class="project-info">
+                    <h3>Task Management Tool</h3>
+                    <p>Web-based application for managing daily tasks and projects.</p>
+                    <div class="tech-stack">
+                        <span>#Vue.js</span>
+                        <span>#Firebase</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/1749667331815.jpg" alt="Project 6">
+                <div class="project-info">
+                    <h3>Game Development</h3>
+                    <p>Simple 2D game developed using Python and Pygame library.</p>
+                    <div class="tech-stack">
+                        <span>#Python</span>
+                        <span>#Pygame</span>
+                    </div>
+                    <a href="#" class="btn-box">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials/Customers section -->
+    <section class="customers-section" id="customers">
+        <h2 class="heading">My <span>Customers</span></h2>
+
+        <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonialTrack">
+                <!-- Each customer-card includes image, name, stars rating, and feedback text -->
+                <div class="customer-card">
+                    <img src="images/1749667331815.jpg" alt="Customer 1" class="customer-img">
+                    <h3>Ahmed Al-Ali</h3>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Outstanding service! The work delivered exceeded my expectations. Highly recommended for
+                        professionalism and quality."</p>
+                </div>
+                <div class="customer-card">
+                    <img src="images/1749667331815.jpg" alt="Customer 2" class="customer-img">
+                    <h3>Fatima Zahra</h3>
+                    <div class="stars">⭐⭐⭐⭐</div>
+                    <p>"Working with this team was a pleasure. They understood my vision perfectly and brought it to
+                        life with incredible skill."</p>
+                </div>
+                <div class="customer-card">
+                    <img src="images/1749667331815.jpg" alt="Customer 3" class="customer-img">
+                    <h3>Omar Hassan</h3>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Very impressed with the efficiency and attention to detail. My project was completed on time and
+                        flawlessly."</p>
+                </div>
+            </div>
+            <!-- Navigation arrows for the testimonial slider -->
+            <button class="testimonial-nav left" id="testimonialPrev">&#10094;</button>
+            <button class="testimonial-nav right" id="testimonialNext">&#10095;</button>
+        </div>
+    </section>
+    <!-- Contact section with form -->
+    <section class="contact-section" id="contact">
+        <h2 class="heading">Contact <span>Us!</span></h2>
+
+        <div class="contact-form-container">
+            <form id="contactForm">
+                <!-- Input fields: name, email, message -->
+                <div class="input-box">
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <span class="error-message" id="fullNameError"></span>
+                </div>
+
+                <div class="input-box">
+                    <input type="email" id="emailAddress" placeholder="Email Address" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="input-box">
+                    <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message"
+                        required></textarea>
+                    <div class="message-meta">
+                        <span id="charCount">0/500 Characters</span>
+                        <span class="error-message" id="messageError"></span>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn-box">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <!-- Confirmation message box -->
+    <div id="messageBoxOverlay" class="message-box-overlay">
+        <div class="message-box-content">
+            <h3 id="messageBoxTitle"></h3>
+            <p id="messageBoxText"></p>
+            <button id="messageBoxCloseBtn">OK</button>
+        </div>
+    </div>
+    <!-- Footer section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Quick links -->
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <!-- Links to all sections of the site -->
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">My Skills</a></li>
+                    <li><a href="#education-experience">Education & Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#customers">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Contact info -->
+            <div class="footer-section contact-info">
+                <h3>Contact Info</h3>
+                <!-- Email, phone, and location -->
+                <p><i class="fas fa-envelope"></i> raedgamer313@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +972 597 886 717</p>
+                <p><i class="fas fa-map-marker-alt"></i> Gaza, Palstine</p>
+            </div>
+            <!-- Social media links -->
+            <div class="footer-section social-media">
+                <h3>Follow Me</h3>
+                <!-- Links to Facebook, Twitter, LinkedIn, GitHub -->
+                <div class="footer-social-icons">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright notice -->
+        <div class="footer-text">
+            <p>Copyright &copy; <span id="currentYear"></span> by Raed Al-Hallaq | All Rights Reserved.</p>
+        </div>
+
+
+    </footer>
+    <!-- Scroll to top button -->
+    <a href="#home" class="scroll-to-top" aria-label="Scroll to top">
+        <svg class="progress-ring" width="60" height="60">
+            <circle cx="30" cy="30" r="26" stroke-width="4" fill="none" />
+        </svg>
+        <span id="scrollPercentage">↑</span>
+    </a>
+    <!-- Modal popup for viewing project details -->
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <!-- Modal close button -->
+            <span class="modal-close" id="modalCloseBtn">&times;</span>
+            <!-- Title, carousel, description, and links -->
+            <h2 id="modalTitle">Project Title</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn" id="prevBtn">&#10094;</button>
+                <img id="carouselImage" src="" alt="Project Screenshot" />
+                <button class="carousel-btn" id="nextBtn">&#10095;</button>
+            </div>
+            <p id="modalDescription">Project description goes here...</p>
+            <div class="modal-links" id="modalLinks"></div>
+        </div>
+    </div>
+    <!-- Main JavaScript file -->
+    <script src="main.js"></script>
+</body>
+
+</html>
