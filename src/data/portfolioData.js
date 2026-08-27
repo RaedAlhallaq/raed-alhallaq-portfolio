@@ -59,13 +59,14 @@ export const portfolioData = {
 
   skills: [
     { name: "React", level: 90, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#61dafb", icon: "Code2" },
-    { name: "JavaScript / TypeScript", level: 85, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#f7df1e", icon: "FileCode" },
+    { name: "JavaScript", level: 85, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#f7df1e", icon: "FileCode" },
     { name: "HTML5 / CSS3", level: 95, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#e34f26", icon: "Layout" },
     { name: "Tailwind CSS", level: 90, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#38bdf8", icon: "Palette" },
-    { name: "Node.js", level: 75, category: "Backend & DB", categoryAr: "الخلفية وقواعد البيانات", color: "#68a063", icon: "Server" },
+    { name: "Bootstrap", level: 85, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#7952b3", icon: "Layout" },
     { name: "PHP", level: 80, category: "Backend & DB", categoryAr: "الخلفية وقواعد البيانات", color: "#777bb4", icon: "Database" },
-    { name: "Git / GitHub", level: 88, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f05032", icon: "GitBranch" },
-    { name: "Figma", level: 80, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#f24e1e", icon: "Figma" }
+    { name: "MySQL", level: 78, category: "Backend & DB", categoryAr: "الخلفية وقواعد البيانات", color: "#4479a1", icon: "Database" },
+    { name: "Java", level: 70, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f89820", icon: "FileCode" },
+    { name: "Git / GitHub", level: 88, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f05032", icon: "GitBranch" }
   ],
 
   journey: {
