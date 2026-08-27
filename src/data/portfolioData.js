@@ -41,14 +41,14 @@ export const portfolioData = {
 
   aboutTabs: {
     en: [
-      { id: 'story', label: 'My Story', content: 'A Frontend Developer based in Gaza, Palestine. Driven by an obsession with writing clean code and creating pixel-perfect web experiences that stand out.' },
-      { id: 'strengths', label: 'Core Strengths', content: 'Frontend Web Architecture, Responsive Engineering, UI/UX Animations, and Performance Tuning using modern tools like React and TypeScript.' },
-      { id: 'values', label: 'Engineering Values', content: 'Clean code, maintainability, accessibility, user-centric interface design, and continuous learning of cutting-edge technologies.' }
+      { id: 'story', label: 'My Story', content: 'A Frontend Developer based in Gaza, Palestine, currently training in the Market Ready Developer program at Gaza Sky Geeks. Driven by an obsession with writing clean code and engineering web experiences that truly stand out.' },
+      { id: 'strengths', label: 'Core Strengths', content: 'Frontend Web Architecture, Responsive Engineering, UI/UX Animations, Data Structures & Algorithms, OOP & Design Patterns (SOLID, Singleton, Factory, Observer), and Performance Optimization.' },
+      { id: 'values', label: 'Engineering Values', content: 'Clean code, maintainability, accessibility, user-centric interface design, thinking before coding, and continuous learning of cutting-edge technologies.' }
     ],
     ar: [
-      { id: 'story', label: 'قصتي', content: 'مطور واجهات أمامية من غزة، فلسطين. يدفني الشغف بكتابة كود نظيف وبناء تجارب ويب متقنة تلبي التطلعات وتتميز.' },
-      { id: 'strengths', label: 'نقاط القوة', content: 'معمارية الواجهات الأمامية، التصميم المتجاوب، الأنيميشن والتفاعل المتقدم باستخدام أدوات حديثة مثل React و TypeScript.' },
-      { id: 'values', label: 'قيم العمل', content: 'كود نظيف، قابلية الصيانة، إمكانية الوصول، التصميم المتمحور حول المستخدم، والتطوير المستمر.' }
+      { id: 'story', label: 'قصتي', content: 'مطور واجهات أمامية من غزة، فلسطين، أتدرب حالياً في برنامج Market Ready Developer لدى Gaza Sky Geeks. يدفعني الشغف بكتابة كود نظيف وبناء معمارية برمجية متقنة تلبي أعلى المعايير.' },
+      { id: 'strengths', label: 'نقاط القوة', content: 'معمارية الواجهات الأمامية، التصميم المتجاوب، هياكل البيانات والخوارزميات، البرمجة كائنية التوجه وأنماط التصميم (SOLID، Singleton، Factory، Observer)، وتحسين الأداء.' },
+      { id: 'values', label: 'قيم العمل', content: 'كود نظيف، قابلية الصيانة، التفكير قبل الكود، الاعتماد على التوثيق الرسمي، التصميم المتمحور حول المستخدم، والتطوير المستمر.' }
     ]
   },
 
@@ -65,12 +65,27 @@ export const portfolioData = {
     { name: "Bootstrap", level: 85, category: "Frontend", categoryAr: "الواجهة الأمامية", color: "#7952b3", icon: "Layout" },
     { name: "PHP", level: 80, category: "Backend & DB", categoryAr: "الخلفية وقواعد البيانات", color: "#777bb4", icon: "Database" },
     { name: "MySQL", level: 78, category: "Backend & DB", categoryAr: "الخلفية وقواعد البيانات", color: "#4479a1", icon: "Database" },
-    { name: "Java", level: 70, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f89820", icon: "FileCode" },
+    { name: "Java & OOP", level: 80, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f89820", icon: "FileCode" },
+    { name: "Data Structures & Algorithms", level: 75, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#a78bfa", icon: "Code2" },
     { name: "Git / GitHub", level: 88, category: "Languages & Tools", categoryAr: "اللغات والأدوات", color: "#f05032", icon: "GitBranch" }
   ],
 
   journey: {
     en: [
+      {
+        type: "experience",
+        year: "2025 - Present",
+        title: "Market Ready Developer Trainee",
+        institution: "Gaza Sky Geeks (MRDT)",
+        description: "Intensive software engineering training covering OOP with Java, SOLID principles, Design Patterns (Singleton, Factory, Observer), Data Structures & Algorithms (Hashing, AVL Trees, B-Trees, Sorting), and professional problem-solving mindset."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "AI Engineering Program",
+        institution: "PDES - Palestinian Digital Empowerment System",
+        description: "Accepted into the AI Engineering program: From Concepts to Practical Applications, focusing on building AI-powered web applications."
+      },
       {
         type: "experience",
         year: "Present",
@@ -87,6 +102,20 @@ export const portfolioData = {
       }
     ],
     ar: [
+      {
+        type: "experience",
+        year: "2025 - الآن",
+        title: "متدرب - Market Ready Developer",
+        institution: "Gaza Sky Geeks (MRDT)",
+        description: "تدريب هندسي مكثف يشمل البرمجة كائنية التوجه بـ Java، مبادئ SOLID، أنماط التصميم (Singleton، Factory، Observer)، هياكل البيانات والخوارزميات (Hashing، AVL Trees، B-Trees، الترتيب)، وعقلية حل المشكلات الاحترافية."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "برنامج هندسة الذكاء الاصطناعي",
+        institution: "PDES - النظام الفلسطيني للتمكين الرقمي",
+        description: "قبلت في برنامج هندسة الذكاء الاصطناعي: من المفاهيم إلى التطبيقات العملية، مع التركيز على بناء تطبيقات ويب مدعومة بالذكاء الاصطناعي."
+      },
       {
         type: "experience",
         year: "الآن",
