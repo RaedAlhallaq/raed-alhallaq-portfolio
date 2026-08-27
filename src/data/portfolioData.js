@@ -77,14 +77,42 @@ export const portfolioData = {
         year: "2025 - Present",
         title: "Market Ready Developer Trainee",
         institution: "Gaza Sky Geeks (MRDT)",
-        description: "Intensive software engineering training covering OOP with Java, SOLID principles, Design Patterns (Singleton, Factory, Observer), Data Structures & Algorithms (Hashing, AVL Trees, B-Trees, Sorting), and professional problem-solving mindset."
+        description: "Passed the technical interview and joined this intensive software engineering program. Covers OOP with Java, SOLID principles, Design Patterns (Singleton, Factory, Observer), Data Structures & Algorithms (Hashing, AVL Trees, B-Trees, Sorting), and professional problem-solving mindset."
       },
       {
         type: "experience",
         year: "2025",
         title: "AI Engineering Program",
         institution: "PDES - Palestinian Digital Empowerment System",
-        description: "Accepted into the AI Engineering program: From Concepts to Practical Applications, focusing on building AI-powered web applications."
+        description: "Accepted into the AI Engineering program: From Concepts to Practical Applications — focusing on building AI-powered web applications and integrating modern AI tools."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "Agentic AI & Multi-Agent Systems Workshop",
+        institution: "Tech Talk Vibes",
+        description: "Advanced AI workshop on Agentic Architecture and Multi-Agent Systems. Explored Orchestrator Agents, specialized sub-agents (Research & Code Agents), System Prompt governance, and preventing AI hallucinations in production systems."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "Freelance Marathon Graduate",
+        institution: "EFE-Palestine & Avatar IT & Act for Development",
+        description: "Completed 24-hour intensive Virtual Jobs & Remote Work training program. Covered professional freelancing strategies, proposal writing, project management, digital identity building, and psychosocial support (PSS)."
+      },
+      {
+        type: "education",
+        year: "2025",
+        title: "Digital Freelancing Certificate",
+        institution: "ITC (International Trade Centre) & BTI — Go Digital Gaza",
+        description: "Certified in Introduction to Digital Freelancing. Focused on digital identity building on freelance platforms, project management under deadlines, and client communication best practices."
+      },
+      {
+        type: "education",
+        year: "2025",
+        title: "DigiWork Freelance Skills Training",
+        institution: "Leaders International & GIZ & TAQAT",
+        description: "30-hour intensive freelancing program. Covered platform management, proposal writing, quality assurance, AI productivity tools, financial management for freelancers, and client relations."
       },
       {
         type: "experience",
@@ -107,7 +135,7 @@ export const portfolioData = {
         year: "2025 - الآن",
         title: "متدرب - Market Ready Developer",
         institution: "Gaza Sky Geeks (MRDT)",
-        description: "تدريب هندسي مكثف يشمل البرمجة كائنية التوجه بـ Java، مبادئ SOLID، أنماط التصميم (Singleton، Factory، Observer)، هياكل البيانات والخوارزميات (Hashing، AVL Trees، B-Trees، الترتيب)، وعقلية حل المشكلات الاحترافية."
+        description: "اجتزت المقابلة التقنية وانضممت لهذا البرنامج الهندسي المكثف. يشمل البرمجة كائنية التوجه بـ Java، مبادئ SOLID، أنماط التصميم، هياكل البيانات والخوارزميات، وعقلية حل المشكلات الاحترافية."
       },
       {
         type: "experience",
@@ -115,6 +143,34 @@ export const portfolioData = {
         title: "برنامج هندسة الذكاء الاصطناعي",
         institution: "PDES - النظام الفلسطيني للتمكين الرقمي",
         description: "قبلت في برنامج هندسة الذكاء الاصطناعي: من المفاهيم إلى التطبيقات العملية، مع التركيز على بناء تطبيقات ويب مدعومة بالذكاء الاصطناعي."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "ورشة أنظمة الوكلاء الذكية",
+        institution: "Tech Talk Vibes",
+        description: "ورشة متقدمة في معمارية الوكلاء (Agentic Architecture) وأنظمة متعددة الوكلاء (Multi-Agent Systems). تضمنت هندسة Orchestrator Agent، وكيفية بناء وكلاء متخصصة آمنة وموثوقة."
+      },
+      {
+        type: "experience",
+        year: "2025",
+        title: "تخرج ماراثون العمل الحر",
+        institution: "EFE-Palestine & Avatar IT & Act for Development",
+        description: "برنامج 24 ساعة تدريبية في مهارات العمل عن بعد، بناء الهوية الرقمية، التسعير الذكي، كتابة العروض الاحترافية، وإدارة علاقات العملاء."
+      },
+      {
+        type: "education",
+        year: "2025",
+        title: "شهادة العمل الحر الرقمي",
+        institution: "ITC & BTI — Go Digital Gaza",
+        description: "شهادة Introduction to Digital Freelancing من مركز التجارة الدولي (ITC). تضمنت بناء الهوية الرقمية، إدارة المشاريع تحت ضغط المواعيد، والتواصل المهني مع العملاء."
+      },
+      {
+        type: "education",
+        year: "2025",
+        title: "تدريب DigiWork لمهارات العمل الحر",
+        institution: "Leaders International & GIZ & TAQAT",
+        description: "30 ساعة تدريبية مكثفة. غطت إدارة المنصات، كتابة العروض، ضمان الجودة، أدوات الذكاء الاصطناعي لزيادة الإنتاجية، والإدارة المالية للمستقلين."
       },
       {
         type: "experience",
@@ -159,7 +215,7 @@ export const portfolioData = {
       descEn: "A sleek, modern personal portfolio website built with React, Vite, and Tailwind CSS. Features dark/light theme toggle, interactive UI elements, and sound effects.",
       descAr: "موقع بورتفوليو شخصي حديث وفخم مبني باستخدام React و Vite و Tailwind CSS. يتميز بالتحويل بين الوضع الليلي والنهاري، عناصر تفاعلية، وتأثيرات صوتية.",
       tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
-      liveUrl: "https://github.com/RaedAlhallaq/raed-alhallaq-portfolio",
+      liveUrl: "https://raed-alhallaq-portfolio.vercel.app/",
       githubUrl: "https://github.com/RaedAlhallaq/raed-alhallaq-portfolio"
     },
     {
@@ -184,10 +240,10 @@ export const portfolioData = {
       categoryAr: "واجهة أمامية",
       image: "images/1749667331815.jpg",
       screenshots: ["images/1749667331815.jpg"],
-      descEn: "VolunGate - Islamic University of Gaza Volunteering Management System interface built with TypeScript.",
-      descAr: "نظام وبوابة إدارة العمل التطوعي في الجامعة الإسلامية بغزة مبني باستخدام TypeScript.",
-      tags: ["TypeScript", "Management System", "Frontend"],
-      liveUrl: "https://github.com/RaedAlhallaq/VolunGate-IUG",
+      descEn: "VolunGate — Islamic University of Gaza Volunteering Management System. Led the technical development as Team Lead, overseeing the frontend architecture and React component development for this full volunteering management platform.",
+      descAr: "بوابة التطوع في الجامعة الإسلامية. توليت قيادة التطوير والإشراف على هندسة الواجهة الأمامية وتطوير مكونات React.",
+      tags: ["React", "Team Lead", "Management System", "Frontend", "Vercel"],
+      liveUrl: "https://volun-gate-iug-4hkb.vercel.app/",
       githubUrl: "https://github.com/RaedAlhallaq/VolunGate-IUG"
     },
     {
