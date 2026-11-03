@@ -1,25 +1,20 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/types/project'
 import { ProjectVisual } from './project-visual'
 import { ProjectLinks } from './project-links'
-import {
-  CATEGORY_LABELS,
-  VIEW_DETAILS_LABEL,
-  ownershipEvidenceLabel,
-} from './project-labels'
+import { CATEGORY_LABELS, VIEW_DETAILS_LABEL, ownershipEvidenceLabel } from './project-labels'
 
 interface ProjectCardProps {
   project: Project
   index: number
-  showDetailedView?: boolean
   wide?: boolean
 }
 
-export function ProjectCard({ project, index, showDetailedView = true, wide = false }: ProjectCardProps) {
+export function ProjectCard({ project, index, wide = false }: ProjectCardProps) {
   const { language } = useLanguage()
 
   const title = localize(project.title, language)
@@ -27,66 +22,60 @@ export function ProjectCard({ project, index, showDetailedView = true, wide = fa
   const ownershipLabel = ownershipEvidenceLabel(project, language)
 
   return (
-    <article className="tile-interactive group flex h-full flex-col overflow-hidden">
-      <ProjectVisual
-        project={project}
-        index={index}
-        className={cn('border-b border-border/70', wide ? 'aspect-[16/9] sm:aspect-[21/8]' : 'aspect-[16/10]')}
-      />
-
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="flex items-center justify-between gap-3">
-          <span className="eyebrow">{categoryLabel ?? '—'}</span>
-          <span className="tech-label text-[0.625rem]">{ownershipLabel}</span>
-        </div>
-
-        <h3
+    <article className="group relative flex h-full flex-col">
+      <div className="overflow-hidden">
+        <ProjectVisual
+          project={project}
+          index={index}
           className={cn(
-            'mt-2.5 font-semibold tracking-tight transition-colors group-hover:text-brand',
-            wide ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl',
+            'w-full transition-transform duration-700 ease-out group-hover:scale-[1.015]',
+            wide ? 'aspect-[16/10] sm:aspect-[21/9]' : 'aspect-[4/3]',
           )}
-        >
-          {title}
+        />
+      </div>
+
+      <div className="mt-4 flex items-baseline justify-between gap-4">
+        <h3 className={cn('font-semibold tracking-tight', wide ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl')}>
+          <Link
+            to={`/projects/${project.slug}`}
+            className="rounded-sm underline-offset-4 outline-none after:absolute after:inset-0 after:content-[''] hover:underline focus-visible:ring-2 focus-visible:ring-ring/40"
+          >
+            {title}
+            <span className="sr-only"> — {localize(VIEW_DETAILS_LABEL, language)}</span>
+          </Link>
         </h3>
+        <span className="shrink-0 font-mono text-[0.625rem] text-muted-foreground">
+          {String(index).padStart(2, '0')}
+        </span>
+      </div>
 
-        <p
-          className={cn(
-            'mt-2 text-sm leading-relaxed text-muted-foreground',
-            wide ? 'max-w-[70ch] sm:text-base' : 'line-clamp-3',
-          )}
-        >
-          {localize(project.summary, language)}
-        </p>
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+        <span>{categoryLabel ?? '—'}</span>
+        <span aria-hidden="true">·</span>
+        <span>{ownershipLabel}</span>
+      </div>
 
-        {project.stack && project.stack.length > 0 ? (
-          <ul className="mt-4 flex flex-wrap gap-1.5">
-            {project.stack.slice(0, wide ? 6 : 4).map((technology) => (
-              <li
-                key={technology}
-                className="rounded-full border border-border/70 bg-muted/50 px-2.5 py-0.5 text-[0.6875rem] text-muted-foreground"
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
-        ) : null}
+      <p
+        className={cn(
+          'mt-3 text-sm leading-relaxed text-muted-foreground',
+          wide ? 'max-w-[62ch] sm:text-base' : 'line-clamp-2',
+        )}
+      >
+        {localize(project.summary, language)}
+      </p>
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-border/60 pt-5">
-          <ProjectLinks project={project} />
-
-          {showDetailedView ? (
-            <Link
-              to={`/projects/${project.slug}`}
-              aria-label={`${localize(VIEW_DETAILS_LABEL, language)} — ${title}`}
-              className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-sm font-semibold text-foreground outline-none transition-colors hover:text-brand focus-visible:ring-3 focus-visible:ring-ring/50"
-            >
-              {localize(VIEW_DETAILS_LABEL, language)}
-              <ArrowRight
-                className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
-          ) : null}
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3">
+        <span className="text-[0.6875rem] text-muted-foreground">
+          {project.stack?.slice(0, wide ? 5 : 3).join(' · ')}
+        </span>
+        <div className="pointer-events-none relative z-10 flex items-center gap-3">
+          <div className="pointer-events-auto">
+            <ProjectLinks project={project} />
+          </div>
+          <ArrowUpRight
+            className="hidden size-4 text-muted-foreground transition-colors group-hover:text-foreground sm:block"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </article>

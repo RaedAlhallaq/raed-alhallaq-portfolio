@@ -34,7 +34,7 @@ function BackLink({ label }: { label: string }) {
   return (
     <Link
       to="/#projects"
-      className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+      className="inline-flex items-center gap-1.5 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
     >
       <ArrowLeft className="size-4 shrink-0 rtl:rotate-180" aria-hidden="true" />
       {label}
@@ -51,10 +51,10 @@ function ProjectNotFound() {
 
   return (
     <section className="container-page flex-1 py-20 sm:py-28">
-      <p className="tech-label">404</p>
+      <p className="eyebrow">404</p>
       <h1 className="heading-section mt-4">{localize(PROJECT_NOT_FOUND_TITLE, language)}</h1>
       <p className="mt-3 text-muted-foreground">{localize(PROJECT_NOT_FOUND_TEXT, language)}</p>
-      <div className="mt-7">
+      <div className="mt-8">
         <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
       </div>
     </section>
@@ -72,28 +72,30 @@ function MoreProjects({ current }: { current: Project }) {
   if (nextProjects.length === 0) return null
 
   return (
-    <div className="mt-10 border-t border-border/70 pt-8">
-      <h2 className="text-lg font-semibold tracking-tight">{localize(COPY.moreProjects, language)}</h2>
-      <ul className="mt-5 grid gap-4 sm:grid-cols-3">
+    <div className="mt-16">
+      <h2 className="eyebrow">{localize(COPY.moreProjects, language)}</h2>
+      <ul className="mt-4">
         {nextProjects.map((project) => (
-          <li key={project.slug}>
+          <li key={project.slug} className="border-t border-border last:border-b">
             <Link
               to={`/projects/${project.slug}`}
-              className="tile-interactive group flex h-full flex-col p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-4 py-4 outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring/40"
             >
-              <span className="tech-label text-[0.625rem]">
+              <span className="font-mono text-[0.625rem] text-muted-foreground">
                 {String(stableProjectIndex(project.slug)).padStart(2, '0')}
               </span>
-              <span className="mt-2 text-base font-semibold tracking-tight transition-colors group-hover:text-brand">
-                {localize(project.title, language)}
+              <span className="min-w-0">
+                <span className="block text-base font-medium tracking-tight transition-colors group-hover:underline group-hover:underline-offset-4">
+                  {localize(project.title, language)}
+                </span>
+                <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                  {localize(project.summary, language)}
+                </span>
               </span>
-              <span className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                {localize(project.summary, language)}
-              </span>
-              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-semibold text-foreground">
-                {language === 'en' ? 'View project' : 'عرض المشروع'}
-                <ArrowRight className="size-3.5 rtl:rotate-180" aria-hidden="true" />
-              </span>
+              <ArrowRight
+                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground rtl:rotate-180 rtl:group-hover:-translate-x-1"
+                aria-hidden="true"
+              />
             </Link>
           </li>
         ))}
@@ -131,60 +133,54 @@ function ProjectDetailView({ project }: { project: Project }) {
   }
 
   return (
-    <article className="container-page flex-1 py-8 sm:py-10">
+    <article className="container-page flex-1 py-10 sm:py-14">
       <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
 
       <Reveal>
-        <div className="mt-6 grid gap-4 lg:grid-cols-12">
-          <div className="tile flex flex-col p-6 sm:p-8 lg:col-span-7">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="chip bg-background text-foreground">
-                {categoryLabel ?? localize(COPY.project, language)}
-              </span>
-              <span className="chip bg-background">{ownershipLabel}</span>
-              {hasDemo ? (
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand-soft px-3 py-1 text-xs font-semibold text-brand-ink">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
-                  {localize(LINK_TYPE_LABELS['live-demo'], language)}
-                </span>
-              ) : null}
-            </div>
-
-            <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">{title}</h1>
-
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {localize(project.summary, language)}
-            </p>
-
-            {project.stack && project.stack.length > 0 ? (
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {project.stack.map((technology) => (
-                  <li
-                    key={technology}
-                    className="rounded-full border border-border bg-muted/60 px-3 py-1.5 text-xs font-medium text-foreground"
-                  >
-                    {technology}
-                  </li>
-                ))}
-              </ul>
+        <div className="mt-8 max-w-4xl">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+            <span>{categoryLabel ?? localize(COPY.project, language)}</span>
+            <span aria-hidden="true">·</span>
+            <span>{ownershipLabel}</span>
+            {hasDemo ? (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>{localize(LINK_TYPE_LABELS['live-demo'], language)}</span>
+              </>
             ) : null}
-
-            <div className="mt-auto pt-7">
-              <ProjectLinks project={project} size="lg" />
-            </div>
           </div>
 
-          <ProjectVisual
-            project={project}
-            index={index}
-            className="min-h-[16rem] rounded-[1.5rem] border border-border/80 shadow-soft lg:col-span-5"
-          />
+          <h1 className="detail-title mt-4">
+            {title}
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {localize(project.summary, language)}
+          </p>
+
+          {project.stack && project.stack.length > 0 ? (
+            <p className="mt-5 font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground rtl:tracking-normal">
+              {project.stack.join(' · ')}
+            </p>
+          ) : null}
+
+          <div className="mt-7">
+            <ProjectLinks project={project} size="lg" />
+          </div>
         </div>
       </Reveal>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-12">
-        <Reveal className="tile p-6 sm:p-8 lg:col-span-8">
-          <h2 className="text-lg font-semibold tracking-tight">{localize(COPY.overview, language)}</h2>
+      <Reveal delay={60}>
+        <ProjectVisual
+          project={project}
+          index={index}
+          className="mt-10 aspect-[16/10] w-full sm:aspect-[21/9]"
+        />
+      </Reveal>
+
+      <div className="mt-12 grid gap-10 border-t border-border pt-10 lg:grid-cols-12">
+        <Reveal className="lg:col-span-8">
+          <h2 className="eyebrow">{localize(COPY.overview, language)}</h2>
           <div className="mt-4 max-w-[65ch] space-y-4 text-base leading-relaxed text-muted-foreground">
             {project.details ? (
               localize(project.details, language)
@@ -196,21 +192,19 @@ function ProjectDetailView({ project }: { project: Project }) {
             )}
 
             {project.note ? (
-              <p className="rounded-xl border border-border/70 bg-muted/50 px-3.5 py-2.5 text-sm text-muted-foreground">
+              <p className="border-s border-border-strong ps-4 text-sm text-muted-foreground">
                 {localize(project.note, language)}
               </p>
             ) : null}
           </div>
         </Reveal>
 
-        <Reveal delay={80} className="tile p-5 sm:p-6 lg:col-span-4">
+        <Reveal delay={80} className="lg:col-span-4">
           <h2 className="eyebrow">{localize(PROJECT_INFORMATION_LABEL, language)}</h2>
-          <dl className="mt-4 divide-y divide-border/70">
+          <dl className="mt-4">
             {factRows.map((row) => (
-              <div key={row.dt} className="grid gap-1 py-3 first:pt-0 last:pb-0">
-                <dt className="text-[0.625rem] font-medium uppercase tracking-[0.16em] text-muted-foreground [dir='rtl']:tracking-normal">
-                  {row.dt}
-                </dt>
+              <div key={row.dt} className="grid gap-1 border-t border-border py-3">
+                <dt className="text-xs text-muted-foreground">{row.dt}</dt>
                 <dd className="text-sm font-medium text-foreground">{row.dd}</dd>
               </div>
             ))}

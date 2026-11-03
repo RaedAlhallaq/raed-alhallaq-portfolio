@@ -19,36 +19,31 @@ export function AppFooter() {
   const profileSocials = socials.filter((social) => social.platform !== 'whatsapp')
 
   return (
-    <footer className="border-t border-border/70">
-      <div className="container-page py-12">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="tile flex flex-col justify-between gap-6 p-5 sm:col-span-2 lg:col-span-5">
-            <div>
-              <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {localize(
-                  { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
-                  language,
-                )}
-              </p>
-            </div>
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-500" />
+    <footer className="border-t border-border">
+      <div className="container-page py-12 sm:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {localize({ en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' }, language)}
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-foreground" />
               {language === 'ar' ? 'متاح للعمل والتعاون' : 'Available for work and collaboration'}
-            </span>
+            </p>
           </div>
 
           <nav
             aria-label={language === 'en' ? 'Footer' : 'الجزء السفلي'}
-            className="tile p-5 lg:col-span-3"
+            className="lg:col-span-3"
           >
-            <p className="eyebrow text-[0.625rem]">{language === 'en' ? 'Sections' : 'الأقسام'}</p>
-            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
+            <p className="eyebrow">{language === 'en' ? 'Sections' : 'الأقسام'}</p>
+            <ul className="mt-4 space-y-2">
               {sections.map((item) => (
                 <li key={item.id}>
                   <a
                     href={item.href}
-                    className="inline-block rounded-md py-1 text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     {localize(item.label, language)}
                   </a>
@@ -57,9 +52,9 @@ export function AppFooter() {
             </ul>
           </nav>
 
-          <div className="tile p-5 lg:col-span-4">
-            <p className="eyebrow text-[0.625rem]">{language === 'en' ? 'Elsewhere' : 'حسابات أخرى'}</p>
-            <ul className="mt-3 space-y-1.5">
+          <div className="lg:col-span-4">
+            <p className="eyebrow">{language === 'en' ? 'Elsewhere' : 'حسابات أخرى'}</p>
+            <ul className="mt-4 space-y-2">
               {profileSocials.map((social) => {
                 const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
                 if (!Icon) return null
@@ -69,7 +64,7 @@ export function AppFooter() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
-                      className="inline-flex items-center gap-2 rounded-md py-1 text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+                      className="inline-flex items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
                     >
                       <Icon className="size-3.5" aria-hidden="true" />
                       {social.label}
@@ -81,12 +76,12 @@ export function AppFooter() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
             © {year} {localize(profile.name, language)}.{' '}
             {language === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <p className="text-xs text-muted-foreground">
               {language === 'en'
                 ? 'Built with React, Vite and Tailwind CSS.'
@@ -95,9 +90,10 @@ export function AppFooter() {
             <a
               href="#home"
               aria-label={language === 'en' ? 'Back to top' : 'العودة إلى الأعلى'}
-              className="grid size-8 place-items-center rounded-full border border-border bg-background text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="inline-flex items-center gap-1.5 rounded-sm text-xs font-medium text-foreground outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-ring/40"
             >
               <ArrowUp className="size-3.5" aria-hidden="true" />
+              {language === 'en' ? 'Top' : 'أعلى'}
             </a>
           </div>
         </div>

@@ -7,7 +7,7 @@ import { Section, SectionIntro } from './section'
 import { Reveal } from '@/components/shared/reveal'
 
 const COPY = {
-  eyebrow: { en: '04 · Selected work', ar: '04 · أعمال مختارة' },
+  eyebrow: { en: '04 — Selected work', ar: '04 — أعمال مختارة' },
   title: { en: 'Projects built to be used.', ar: 'مشاريع بُنيت لتُستخدم.' },
   description: {
     en: 'Product work, reusable components, and full-stack builds. Templates and practice pieces are grouped below.',
@@ -39,16 +39,16 @@ export function ProjectsPreview() {
                 href={github.url}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground shadow-soft outline-none transition-colors hover:border-border-strong hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
+                className="link inline-flex items-center gap-1.5 text-sm"
               >
                 {localize(COPY.github, language)}
-                <ArrowUpRight className="size-4 rtl:-scale-x-100" aria-hidden="true" />
+                <ArrowUpRight className="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
               </a>
             </Reveal>
           ) : null}
         </div>
 
-        <div className="mt-10">
+        <div className="mt-12">
           <ProjectsGrid />
         </div>
       </div>

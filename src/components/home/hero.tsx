@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, Briefcase, GraduationCap, MapPin } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '@/components/shared/brand-icons'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
-import { cn } from '@/lib/utils'
-import { contact, profile, projects, socials } from '@/data'
-import { Reveal } from '@/components/shared/reveal'
+import { contact, education, profile, projects, socials } from '@/data'
 
 const COPY = {
   availability: { en: 'Available for front-end work', ar: 'متاح للعمل في تطوير الواجهات' },
@@ -21,12 +19,10 @@ const COPY = {
     { value: 'AR / EN', label: { en: 'Bilingual work', ar: 'عمل ثنائي اللغة' } },
   ],
   cardRole: { en: 'Front-End Developer (React & TypeScript)', ar: 'مطوّر واجهات أمامية (React وTypeScript)' },
-  hireland: { en: 'Co-Founder @ Hireland', ar: 'شريك مؤسس في Hireland' },
-  education: { en: 'Islamic University of Gaza', ar: 'الجامعة الإسلامية بغزة' },
+  hireland: { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
   location: { en: 'Gaza, Palestine', ar: 'غزة، فلسطين' },
   profileAlt: { en: 'Portrait of Raed Alhallaq', ar: 'صورة رائد الحلاق' },
-  current: { en: 'Current', ar: 'حالياً' },
-  collaboration: { en: 'Open to collaboration and opportunities', ar: 'مفتوح للتعاون والفرص' },
+  since: { en: 'Portfolio — 2026', ar: 'بورتفوليو — 2026' },
 }
 
 const SOCIAL_ICONS = {
@@ -38,131 +34,67 @@ const SOCIAL_ICONS = {
 export function Hero() {
   const { language } = useLanguage()
   const isArabic = language === 'ar'
+  const degree = education.degree
 
   return (
-    <section id="home" className="relative scroll-mt-24 overflow-hidden pb-6 pt-5 sm:pt-8 lg:pt-10">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(55% 65% at 50% 0%, color-mix(in oklch, var(--brand) 11%, transparent), transparent 70%)',
-          }}
-        />
-      </div>
-
+    <section id="home" className="scroll-mt-24 pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pt-20">
       <div className="container-page">
-        <div className="grid gap-4 lg:grid-cols-12">
-          <div className="flex flex-col gap-4 lg:col-span-7">
-            <Reveal className="tile flex-1 overflow-hidden p-6 sm:p-8 lg:p-9">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-foreground">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-500" />
-                  {localize(COPY.availability, language)}
-                </span>
-                <span className="tech-label inline-flex items-center gap-1.5">
-                  <MapPin className="size-3.5" aria-hidden="true" />
-                  {localize(COPY.location, language)}
-                </span>
-              </div>
-
-              <h1 className="display-title mt-6">{localize(profile.name, language)}</h1>
-
-              <p className="mt-4 max-w-2xl text-sm font-semibold leading-relaxed text-brand sm:text-[0.9375rem]">
-                {localize(profile.headline, language)}
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="flex flex-col lg:col-span-7">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <p className="inline-flex items-center gap-2 text-xs font-medium text-foreground">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-foreground" />
+                {localize(COPY.availability, language)}
               </p>
-
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-                {localize(COPY.lead, language)}
+              <span aria-hidden="true" className="hidden h-3 w-px bg-border-strong sm:block" />
+              <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <MapPin className="size-3.5" aria-hidden="true" />
+                {localize(COPY.location, language)}
               </p>
+            </div>
 
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/#projects"
-                  className="inline-flex h-11 items-center gap-2 rounded-xl bg-foreground px-5 text-sm font-semibold text-background shadow-soft outline-none transition-[transform,opacity] hover:opacity-90 active:translate-y-px focus-visible:ring-3 focus-visible:ring-ring/50"
-                >
-                  {localize(COPY.viewProjects, language)}
-                  <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
-                </Link>
-                <Link
-                  to="/#contact"
-                  className="inline-flex h-11 items-center gap-2 rounded-xl border border-border-strong bg-background px-5 text-sm font-semibold text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
-                >
-                  {localize(COPY.contact, language)}
-                  <ArrowUpRight className="size-4 rtl:-scale-x-100" aria-hidden="true" />
-                </Link>
+            <h1 className="display-title mt-7">
+              {localize(profile.name, language)}
+            </h1>
+
+            <p className="mt-7 max-w-2xl text-sm font-medium leading-relaxed text-foreground sm:text-base">
+              {localize(profile.headline, language)}
+            </p>
+
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              {localize(COPY.lead, language)}
+            </p>
+
+            <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <Link
+                to="/#projects"
+                className="inline-flex h-11 items-center gap-2 rounded-md bg-foreground px-6 text-sm font-medium text-background outline-none transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ring/50"
+              >
+                {localize(COPY.viewProjects, language)}
+                <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
+              </Link>
+              <Link to="/#contact" className="link text-sm">
+                {localize(COPY.contact, language)}
+              </Link>
+            </div>
+
+            <div className="mt-12 grid gap-4 border-t border-border pt-6 text-sm sm:grid-cols-2 lg:mt-auto lg:pt-8">
+              <div>
+                <p className="eyebrow">{language === 'en' ? 'Current' : 'حالياً'}</p>
+                <p className="mt-2 font-medium">{localize(COPY.hireland, language)}</p>
               </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/70 pt-5">
-                <div className="flex items-center gap-1">
-                  {socials
-                    .filter((social) => social.platform !== 'whatsapp')
-                    .map((social) => {
-                      const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
-                      if (!Icon) return null
-                      return (
-                        <a
-                          key={social.platform}
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                          aria-label={social.handle ? `${social.label}: ${social.handle}` : social.label}
-                          className="inline-flex size-9 items-center justify-center rounded-lg text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
-                        >
-                          <Icon className="size-4.5" aria-hidden="true" />
-                        </a>
-                      )
-                    })}
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  {localize(COPY.collaboration, language)}
-                </span>
+              <div>
+                <p className="eyebrow">{language === 'en' ? 'Education' : 'التعليم'}</p>
+                <p className="mt-2 font-medium">{localize(degree, language)}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {localize(education.institution, language)}
+                </p>
               </div>
-            </Reveal>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {COPY.stats.map((stat, index) => (
-                <Reveal
-                  key={stat.label.en}
-                  delay={index * 60}
-                  className={cn(
-                    'flex flex-col justify-between gap-6 p-5',
-                    index === 0 ? 'tile-soft' : 'tile',
-                  )}
-                >
-                  <p
-                    className={cn(
-                      'tech-label text-[0.625rem]',
-                      index === 0 && 'text-accent-foreground/70',
-                    )}
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <div>
-                    <p
-                      className={cn(
-                        'text-2xl font-semibold tracking-tight sm:text-3xl',
-                        index === 0 && 'text-accent-foreground',
-                      )}
-                    >
-                      {stat.value}
-                    </p>
-                    <p
-                      className={cn(
-                        'mt-1 text-xs',
-                        index === 0 ? 'text-accent-foreground/80' : 'text-muted-foreground',
-                      )}
-                    >
-                      {localize(stat.label, language)}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
             </div>
           </div>
 
-          <Reveal delay={120} className="tile flex flex-col overflow-hidden p-2.5 sm:flex-row lg:col-span-5 lg:flex-col">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.15rem] bg-muted sm:aspect-[4/3] sm:w-[50%] lg:aspect-auto lg:w-full lg:min-h-[24rem] lg:flex-1">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden bg-muted sm:aspect-[5/4] lg:aspect-[4/5]">
               {profile.avatarSrc ? (
                 <img
                   src={profile.avatarSrc}
@@ -174,64 +106,53 @@ export function Hero() {
                   fetchPriority="high"
                 />
               ) : (
-                <div className="absolute inset-0 grid place-items-center text-6xl font-semibold text-muted-foreground">
+                <div className="absolute inset-0 grid place-items-center font-serif text-6xl text-muted-foreground">
                   {isArabic ? 'ر' : 'RA'}
                 </div>
               )}
-
-              <div className="absolute inset-x-2.5 top-2.5 flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-background/85 px-2.5 py-1 text-[0.625rem] font-semibold text-foreground shadow-soft backdrop-blur-md">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-500" />
-                  {localize(COPY.current, language)}
-                </span>
-                <span className="rounded-full bg-background/85 px-2.5 py-1 font-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-muted-foreground backdrop-blur-md">
-                  {isArabic ? 'غزة' : 'GZA'}
-                </span>
-              </div>
-
-              <div className="absolute inset-x-2.5 bottom-2.5 rounded-xl border border-border/60 bg-background/85 px-3.5 py-2.5 backdrop-blur-md">
-                <p className="truncate text-sm font-semibold tracking-tight">
-                  {localize(profile.name, language)}
-                </p>
-                <p className="truncate text-xs text-muted-foreground">
-                  {localize(COPY.cardRole, language)}
-                </p>
-              </div>
             </div>
-
-            <div className="grid gap-0.5 p-2 pt-3 sm:flex-1 sm:content-start sm:pt-2 lg:pt-3">
-              <div className="flex items-center gap-3 rounded-xl px-2.5 py-2">
-                <Briefcase className="size-4 shrink-0 text-brand" aria-hidden="true" />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{localize(COPY.hireland, language)}</p>
-                  <p className="truncate text-xs text-muted-foreground">
-                    {localize({ en: 'Present', ar: 'حتى الآن' }, language)}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-xl px-2.5 py-2">
-                <GraduationCap className="size-4 shrink-0 text-brand" aria-hidden="true" />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{localize(COPY.education, language)}</p>
-                  <p className="truncate text-xs text-muted-foreground">
-                    {localize(
-                      { en: 'B.Sc. Computer Science · in progress', ar: 'بكالوريوس علوم الحاسوب · قيد الدراسة' },
-                      language,
-                    )}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-xl px-2.5 py-2">
-                <MapPin className="size-4 shrink-0 text-brand" aria-hidden="true" />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{localize(COPY.location, language)}</p>
-                  <p className="truncate text-xs text-muted-foreground" dir="ltr">
-                    {contact.email}
-                  </p>
-                </div>
-              </div>
+            <div className="mt-3 flex items-baseline justify-between gap-4 text-xs text-muted-foreground">
+              <p className="font-medium text-foreground">{localize(COPY.cardRole, language)}</p>
+              <p className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted-foreground rtl:tracking-normal">
+                {localize(COPY.since, language)}
+              </p>
             </div>
-          </Reveal>
+          </div>
+        </div>
+
+        <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 sm:grid-cols-4">
+          {COPY.stats.map((stat) => (
+            <div key={stat.label.en}>
+              <p className="text-2xl font-semibold tracking-tight sm:text-3xl">{stat.value}</p>
+              <p className="mt-1.5 text-xs text-muted-foreground">{localize(stat.label, language)}</p>
+            </div>
+          ))}
+          <div className="flex items-end justify-between gap-3 sm:justify-start sm:gap-4">
+            {socials
+              .filter((social) => social.platform !== 'whatsapp')
+              .map((social) => {
+                const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
+                if (!Icon) return null
+                return (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    aria-label={social.handle ? `${social.label}: ${social.handle}` : social.label}
+                    className="inline-flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground outline-none transition-colors hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                  </a>
+                )
+              })}
+            <a
+              href={`mailto:${contact.email}`}
+              className="hidden text-xs text-muted-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground sm:inline"
+            >
+              {contact.email}
+            </a>
+          </div>
         </div>
       </div>
     </section>

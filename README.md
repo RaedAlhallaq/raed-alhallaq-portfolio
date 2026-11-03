@@ -9,7 +9,7 @@ The site presents verified work and background only: projects, roles, education,
 - **Bilingual AR/EN** — full Arabic and English content with persisted language choice
 - **RTL/LTR** — direction, layout, and icon orientation switch with the language
 - **Dark/light theme** — persisted preference with no flash on first paint
-- **Bento grid layout** — a single tile-based design system that adapts from mobile to wide desktop
+- **Editorial layout** — a typographic, whitespace-led design with a serif display face and quiet ink palette
 - **15 project pages** — routed detail pages for product, platform, component, and template work
 - **Category filtering** — filter the main gallery by full-stack, frontend, or backend work
 - **Other projects** — practice builds and challenge templates grouped below the main gallery instead of mixed into it

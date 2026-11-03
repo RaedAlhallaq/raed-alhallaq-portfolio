@@ -16,8 +16,11 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
   const options: Array<ProjectCategory | null> = [null, ...categories]
 
   return (
-    <div role="group" aria-label={localize({ en: 'Filter projects by category', ar: 'تصفية المشاريع حسب الفئة' }, language)}>
-      <ul className="flex flex-wrap items-center gap-2">
+    <div
+      role="group"
+      aria-label={localize({ en: 'Filter projects by category', ar: 'تصفية المشاريع حسب الفئة' }, language)}
+    >
+      <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
         {options.map((category) => {
           const isActive = category === active
           const label = category
@@ -30,10 +33,10 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
                 aria-pressed={isActive}
                 onClick={() => onSelect(category)}
                 className={cn(
-                  'inline-flex items-center rounded-full border px-3.5 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
+                  'rounded-sm border-b py-0.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/40',
                   isActive
-                    ? 'border-foreground bg-foreground text-background'
-                    : 'border-border bg-card text-muted-foreground hover:border-border-strong hover:text-foreground',
+                    ? 'border-foreground font-medium text-foreground'
+                    : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
                 )}
               >
                 {label}

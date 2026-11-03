@@ -1,49 +1,27 @@
-import { Braces, LayoutGrid, Server, Wrench } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
-import { cn } from '@/lib/utils'
 import { skills } from '@/data'
 import type { Skill, SkillCategory, SkillLevel } from '@/types'
 import { Section, SectionIntro } from './section'
 import { Reveal } from '@/components/shared/reveal'
 
-const CATEGORY_META: Record<SkillCategory, { label: { en: string; ar: string }; icon: LucideIcon }> = {
-  frontend: {
-    label: { en: 'Frontend', ar: 'الواجهات الأمامية' },
-    icon: LayoutGrid,
-  },
-  backend: {
-    label: { en: 'Backend & data', ar: 'الخلفية والبيانات' },
-    icon: Server,
-  },
-  languages: {
-    label: { en: 'Languages & fundamentals', ar: 'اللغات والأساسيات' },
-    icon: Braces,
-  },
-  tools: {
-    label: { en: 'Tools & workflow', ar: 'الأدوات وسير العمل' },
-    icon: Wrench,
-  },
+const CATEGORY_LABEL: Record<SkillCategory, { en: string; ar: string }> = {
+  frontend: { en: 'Frontend', ar: 'الواجهات الأمامية' },
+  backend: { en: 'Backend & data', ar: 'الخلفية والبيانات' },
+  languages: { en: 'Languages & fundamentals', ar: 'اللغات والأساسيات' },
+  tools: { en: 'Tools & workflow', ar: 'الأدوات وسير العمل' },
 }
 
 const CATEGORY_ORDER: SkillCategory[] = ['frontend', 'backend', 'languages', 'tools']
 
-const CATEGORY_SPAN: Record<SkillCategory, string> = {
-  frontend: 'lg:col-span-7',
-  backend: 'lg:col-span-5',
-  languages: 'lg:col-span-5',
-  tools: 'lg:col-span-7',
-}
-
 const COPY = {
-  eyebrow: { en: '03 · Skills', ar: '03 · المهارات' },
+  eyebrow: { en: '03 — Skills', ar: '03 — المهارات' },
   title: { en: 'A focused toolkit.', ar: 'صندوق أدوات مركّز.' },
   description: {
     en: 'The technologies I reach for most — grouped by how I use them, without invented ratings.',
     ar: 'التقنيات التي أعتمد عليها أكثر — مجمّعة حسب طريقة استخدامي لها، دون تقييمات مُختلقة.',
   },
-  legend: { en: 'Visual weight reflects depth of use', ar: 'ثقل العرض يعكس عمق الاستخدام' },
+  legend: { en: 'Level reflects depth of use', ar: 'المستوى يعكس عمق الاستخدام' },
 }
 
 const LEVEL_LABEL: Record<SkillLevel, { en: string; ar: string }> = {
@@ -52,81 +30,17 @@ const LEVEL_LABEL: Record<SkillLevel, { en: string; ar: string }> = {
   familiar: { en: 'Familiar', ar: 'مألوف' },
 }
 
-function chipClasses(level: SkillLevel = 'core') {
-  if (level === 'core') return 'border-border-strong bg-muted/70 text-foreground'
-  if (level === 'working') return 'border-border bg-background text-foreground'
-  return 'border-border/60 bg-transparent text-muted-foreground'
-}
-
-function SkillChip({ skill, large = false }: { skill: Skill; large?: boolean }) {
+function SkillRow({ skill }: { skill: Skill }) {
   const { language } = useLanguage()
   const level = skill.level ?? 'core'
 
   return (
-    <li
-      className={cn(
-        'inline-flex items-center gap-2 rounded-full border font-medium transition-colors',
-        large ? 'px-3.5 py-2 text-sm' : 'px-3 py-1.5 text-xs',
-        chipClasses(level),
-      )}
-    >
-      <span
-        aria-hidden="true"
-        className={cn(
-          'size-1.5 shrink-0 rounded-full',
-          level === 'core' ? 'bg-brand' : level === 'working' ? 'bg-brand/50' : 'bg-border-strong',
-        )}
-      />
-      {localize(skill.name, language)}
+    <li className="flex items-baseline justify-between gap-4 border-b border-border/70 py-2.5">
+      <span className="text-sm text-foreground">{localize(skill.name, language)}</span>
+      <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.1em] text-muted-foreground">
+        {localize(LEVEL_LABEL[level], language)}
+      </span>
     </li>
-  )
-}
-
-function SkillTile({
-  category,
-  items,
-  large = false,
-  index,
-}: {
-  category: SkillCategory
-  items: Skill[]
-  large?: boolean
-  index: number
-}) {
-  const { language } = useLanguage()
-  const meta = CATEGORY_META[category]
-  const Icon = meta.icon
-
-  return (
-    <div
-      className={cn(
-        'tile flex h-full flex-col p-5 sm:p-6',
-        CATEGORY_SPAN[category],
-        large && 'bg-gradient-to-br from-card via-card to-brand-soft/60',
-      )}
-    >
-      <div className="flex items-center gap-3">
-        <span className="icon-tile">
-          <Icon className="size-4.5" aria-hidden="true" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <h3 className={cn('font-semibold tracking-tight', large ? 'text-lg' : 'text-base')}>
-            {localize(meta.label, language)}
-          </h3>
-        </div>
-        <span className="tech-label">{String(index).padStart(2, '0')}</span>
-      </div>
-
-      <ul className={cn('mt-5 flex flex-wrap', large ? 'gap-2.5' : 'gap-2')}>
-        {items.map((skill) => (
-          <SkillChip key={skill.id} skill={skill} large={large} />
-        ))}
-      </ul>
-
-      <p className="tech-label mt-auto pt-6 text-[0.625rem] normal-case tracking-normal">
-        {items.length} {language === 'ar' ? 'عناصر' : 'items'}
-      </p>
-    </div>
   )
 }
 
@@ -150,37 +64,28 @@ export function Skills() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-12">
+        <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {grouped.map((group, index) => (
-            <Reveal key={group.category} delay={index * 60} className="h-full">
-              <SkillTile
-                category={group.category}
-                items={group.items}
-                large={group.category === 'frontend'}
-                index={index + 1}
-              />
+            <Reveal key={group.category} delay={index * 50}>
+              <div className="border-t border-border pt-5">
+                <h3 className="flex items-baseline justify-between gap-3 text-sm font-semibold tracking-tight">
+                  {localize(CATEGORY_LABEL[group.category], language)}
+                  <span className="font-mono text-[0.625rem] font-normal text-muted-foreground">
+                    {String(group.items.length).padStart(2, '0')}
+                  </span>
+                </h3>
+                <ul className="mt-3">
+                  {group.items.map((skill) => (
+                    <SkillRow key={skill.id} skill={skill} />
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={120}>
-          <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 px-1">
-            {(['core', 'working', 'familiar'] as SkillLevel[]).map((level) => (
-              <li key={level} className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    'size-1.5 rounded-full',
-                    level === 'core' ? 'bg-brand' : level === 'working' ? 'bg-brand/50' : 'bg-border-strong',
-                  )}
-                />
-                {localize(LEVEL_LABEL[level], language)}
-              </li>
-            ))}
-            <li className="tech-label ms-auto text-[0.625rem] normal-case tracking-normal">
-              {localize(COPY.legend, language)}
-            </li>
-          </ul>
+          <p className="mt-8 text-xs text-muted-foreground">{localize(COPY.legend, language)}</p>
         </Reveal>
       </div>
     </Section>

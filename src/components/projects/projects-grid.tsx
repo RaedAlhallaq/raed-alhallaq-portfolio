@@ -18,11 +18,7 @@ import {
 
 const CATEGORY_ORDER: ProjectCategory[] = ['full-stack', 'frontend', 'backend']
 
-interface ProjectsGridProps {
-  showDetailedView?: boolean
-}
-
-export function ProjectsGrid({ showDetailedView = true }: ProjectsGridProps) {
+export function ProjectsGrid() {
   const { language } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | null>(null)
 
@@ -42,30 +38,29 @@ export function ProjectsGrid({ showDetailedView = true }: ProjectsGridProps) {
     : showcaseProjects
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4">
         <CategoryFilter
           categories={availableCategories}
           active={activeCategory}
           onSelect={setActiveCategory}
         />
-        <p className="tech-label rounded-full border border-border bg-card px-3 py-1.5 text-[0.625rem]">
-          {visibleProjects.length} / {showcaseProjects.length}
+        <p className="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground">
+          {String(visibleProjects.length).padStart(2, '0')} / {String(showcaseProjects.length).padStart(2, '0')}
         </p>
       </div>
 
       {visibleProjects.length > 0 ? (
         <ol
           aria-label={localize({ en: 'Projects', ar: 'المشاريع' }, language)}
-          className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+          className="grid gap-x-8 gap-y-14 sm:grid-cols-2"
         >
           {visibleProjects.map((project, position) => (
-            <li key={project.slug} className={cn('h-full', position === 0 && 'sm:col-span-2')}>
-              <Reveal delay={Math.min(position, 4) * 50} className="h-full">
+            <li key={project.slug} className={cn(position === 0 && 'sm:col-span-2')}>
+              <Reveal delay={Math.min(position, 4) * 40} className="h-full">
                 <ProjectCard
                   project={project}
                   index={stableProjectIndex(project.slug)}
-                  showDetailedView={showDetailedView}
                   wide={position === 0}
                 />
               </Reveal>
@@ -79,51 +74,48 @@ export function ProjectsGrid({ showDetailedView = true }: ProjectsGridProps) {
       )}
 
       {otherProjects.length > 0 ? (
-        <section
-          aria-labelledby="other-projects-heading"
-          className="mt-4 overflow-hidden rounded-[1.5rem] border border-border/80 bg-card shadow-soft"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 px-5 py-4">
+        <section aria-labelledby="other-projects-heading" className="mt-6">
+          <div className="flex flex-wrap items-baseline justify-between gap-3 border-t border-border pt-6">
             <div>
-              <h3 id="other-projects-heading" className="text-sm font-semibold tracking-tight">
+              <h3 id="other-projects-heading" className="text-lg font-semibold tracking-tight">
                 {localize(OTHER_PROJECTS_TITLE, language)}
               </h3>
-              <p className="mt-0.5 text-xs text-muted-foreground">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {localize(OTHER_PROJECTS_TEXT, language)}
               </p>
             </div>
-            <span className="tech-label text-[0.625rem]">
+            <span className="font-mono text-[0.625rem] text-muted-foreground">
               {String(otherProjects.length).padStart(2, '0')}
             </span>
           </div>
 
-          <ul className="grid gap-px bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-4">
             {otherProjects.map((project) => {
               const title = localize(project.title, language)
               return (
-                <li key={project.slug} className="bg-card">
+                <li key={project.slug} className="border-t border-border last:border-b">
                   <Link
                     to={`/projects/${project.slug}`}
-                    className="group flex h-full flex-col gap-2.5 p-5 outline-none transition-colors hover:bg-muted/50 focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-4 py-5 outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring/40 sm:grid-cols-[3rem_minmax(0,1fr)_10rem_auto]"
                   >
-                    <span className="tech-label text-[0.625rem]">
+                    <span className="font-mono text-[0.625rem] text-muted-foreground">
                       {String(stableProjectIndex(project.slug)).padStart(2, '0')}
                     </span>
-                    <span className="text-sm font-semibold leading-snug transition-colors group-hover:text-brand">
-                      {title}
-                    </span>
-                    <span className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                      {localize(project.summary, language)}
-                    </span>
-                    <span className="mt-auto flex items-center justify-between gap-2 border-t border-border/60 pt-3">
-                      <span className="truncate text-[0.6875rem] text-muted-foreground">
-                        {project.stack?.join(' · ')}
+                    <span className="min-w-0">
+                      <span className="block text-base font-medium tracking-tight transition-colors group-hover:underline group-hover:underline-offset-4">
+                        {title}
                       </span>
-                      <ArrowRight
-                        className="size-3.5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-brand rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-                        aria-hidden="true"
-                      />
+                      <span className="mt-1 block truncate text-xs text-muted-foreground">
+                        {localize(project.summary, language)}
+                      </span>
                     </span>
+                    <span className="hidden truncate text-xs text-muted-foreground sm:block">
+                      {project.stack?.join(' · ')}
+                    </span>
+                    <ArrowRight
+                      className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground rtl:rotate-180 rtl:group-hover:-translate-x-1"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </li>
               )
