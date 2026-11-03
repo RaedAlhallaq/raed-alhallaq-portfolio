@@ -103,7 +103,7 @@ export const projects: Project[] = [
       },
       isLead: true,
     },
-    stack: ['React', 'TypeScript', 'Vercel'],
+    stack: ['React', 'Vite', 'TypeScript', 'Wouter'],
     featured: true,
     images: [],
     links: [
@@ -126,12 +126,12 @@ export const projects: Project[] = [
     },
     category: 'full-stack',
     summary: {
-      en: 'Arabic-first point-of-sale and store management system built with React 19, Laravel, and MySQL.',
-      ar: 'نظام نقاط بيع وإدارة متجر بواجهة عربية أولاً، مبني بـ React 19 و Laravel و MySQL.',
+      en: 'Offline-first, Arabic-first point-of-sale and store management system built with React 19, Laravel, and MySQL.',
+      ar: 'نظام نقاط بيع وإدارة متجر يعمل دون اتصال وبواجهة عربية أولاً، مبني بـ React 19 و Laravel و MySQL.',
     },
     details: {
-      en: 'A full-stack point-of-sale system with an Arabic RTL interface. The front end is built with React 19 and the API with Laravel and MySQL, using Sanctum for authentication.',
-      ar: 'نظام نقاط بيع متكامل بواجهة عربية من اليمين إلى اليسار. الواجهة الأمامية مبنية بـ React 19، والـ API بـ Laravel و MySQL مع Sanctum للمصادقة.',
+      en: 'A full-stack, offline-first point-of-sale system with an Arabic RTL interface. The front end is built with React 19 and the API with Laravel and MySQL, using Sanctum for token authentication and backend-authoritative decimal calculations.',
+      ar: 'نظام نقاط بيع متكامل يعمل دون اتصال، بواجهة عربية من اليمين إلى اليسار. الواجهة الأمامية مبنية بـ React 19، والـ API بـ Laravel و MySQL مع Sanctum لمصادقة الرموز وحسابات عشرية موثوقة من الخادم.',
     },
     ownership: { kind: 'individual' },
     stack: ['React 19', 'Laravel', 'MySQL', 'Tailwind CSS', 'Sanctum'],
@@ -180,8 +180,12 @@ export const projects: Project[] = [
     },
     category: 'full-stack',
     summary: {
-      en: 'Team-built AI learning platform combining a React front end with Laravel and Python services.',
-      ar: 'منصة تعلم بالذكاء الاصطناعي بُنيت كفريق، تجمع واجهة React مع خدمات Laravel و Python.',
+      en: 'Team-built AI learning SaaS with a React front end, a Laravel API, and an AI/RAG engine.',
+      ar: 'منصة تعلم بالذكاء الاصطناعي بُنيت كفريق، بواجهة React وواجهة برمجية Laravel ومحرك AI/RAG.',
+    },
+    details: {
+      en: 'A learning platform that turns academic content into a personalized study experience using generative AI and retrieval-augmented generation. The application combines a React 18 + Vite SPA with a Laravel 11 REST API and Sanctum authentication.',
+      ar: 'منصة تعليمية تحوّل المحتوى الأكاديمي إلى تجربة تعلّم مخصّصة باستخدام الذكاء الاصطناعي التوليدي وRAG. يجمع التطبيق واجهة React 18 وVite مع واجهة Laravel 11 البرمجية ومصادقة Sanctum.',
     },
     ownership: {
       kind: 'team',
@@ -190,7 +194,7 @@ export const projects: Project[] = [
         ar: 'مشروع جماعي — الدور الفردي غير موثّق.',
       },
     },
-    stack: ['React', 'Laravel', 'Python'],
+    stack: ['React', 'Laravel', 'AI/RAG'],
     featured: true,
     images: [],
     links: [
