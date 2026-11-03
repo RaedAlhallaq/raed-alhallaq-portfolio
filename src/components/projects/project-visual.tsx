@@ -10,9 +10,9 @@ interface ProjectVisualProps {
 }
 
 const WASHES = [
-  'linear-gradient(155deg, color-mix(in oklch, var(--foreground) 9%, var(--background)), var(--background) 72%)',
+  'linear-gradient(155deg, color-mix(in oklch, var(--foreground) 8%, var(--background)), color-mix(in oklch, var(--gilt) 4%, var(--background)) 60%, var(--background) 88%)',
   'linear-gradient(135deg, color-mix(in oklch, var(--foreground) 5%, var(--background)), var(--background) 64%)',
-  'linear-gradient(170deg, color-mix(in oklch, var(--foreground) 12%, var(--background)), var(--background) 76%)',
+  'linear-gradient(170deg, color-mix(in oklch, var(--foreground) 11%, var(--background)), color-mix(in oklch, var(--gilt) 3%, var(--background)) 66%, var(--background) 92%)',
   'linear-gradient(145deg, color-mix(in oklch, var(--foreground) 4%, var(--background)), var(--background) 58%)',
 ]
 

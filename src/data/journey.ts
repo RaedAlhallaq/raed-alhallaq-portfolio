@@ -27,6 +27,27 @@ export const education: Education = {
 
 export const experience: ExperienceEntry[] = [
   {
+    id: 'khibra-cofounder',
+    role: {
+      en: 'Co-Founder',
+      ar: 'شريك مؤسس',
+    },
+    organization: {
+      en: 'Khibra Center for Training and Development',
+      ar: 'مركز خبرة للتدريب والتطوير',
+    },
+    type: 'work',
+    current: true,
+    period: {
+      en: 'Present',
+      ar: 'حتى الآن',
+    },
+    summary: {
+      en: 'Co-founding Khibra, a center for training and development.',
+      ar: 'المشاركة في تأسيس مركز خبرة، وهو مركز للتدريب والتطوير.',
+    },
+  },
+  {
     id: 'hireland-cofounder',
     role: {
       en: 'Co-Founder',

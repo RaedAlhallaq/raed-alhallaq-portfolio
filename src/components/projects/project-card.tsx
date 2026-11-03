@@ -22,13 +22,13 @@ export function ProjectCard({ project, index, wide = false }: ProjectCardProps) 
   const ownershipLabel = ownershipEvidenceLabel(project, language)
 
   return (
-    <article className="group relative flex h-full flex-col">
-      <div className="overflow-hidden">
+    <article className="group relative flex h-full flex-col transition-transform duration-500 ease-out hover:-translate-y-1">
+      <div className="overflow-hidden rounded-lg border border-border">
         <ProjectVisual
           project={project}
           index={index}
           className={cn(
-            'w-full transition-transform duration-700 ease-out group-hover:scale-[1.015]',
+            'w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]',
             wide ? 'aspect-[16/10] sm:aspect-[21/9]' : 'aspect-[4/3]',
           )}
         />
@@ -38,7 +38,7 @@ export function ProjectCard({ project, index, wide = false }: ProjectCardProps) 
         <h3 className={cn('font-semibold tracking-tight', wide ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl')}>
           <Link
             to={`/projects/${project.slug}`}
-            className="rounded-sm underline-offset-4 outline-none after:absolute after:inset-0 after:content-[''] hover:underline focus-visible:ring-2 focus-visible:ring-ring/40"
+            className="rounded-sm underline-offset-4 outline-none after:absolute after:inset-0 after:content-[''] decoration-transparent hover:underline hover:decoration-gilt focus-visible:ring-2 focus-visible:ring-ring/40"
           >
             {title}
             <span className="sr-only"> — {localize(VIEW_DETAILS_LABEL, language)}</span>
@@ -73,7 +73,7 @@ export function ProjectCard({ project, index, wide = false }: ProjectCardProps) 
             <ProjectLinks project={project} />
           </div>
           <ArrowUpRight
-            className="hidden size-4 text-muted-foreground transition-colors group-hover:text-foreground sm:block"
+            className="hidden size-4 text-muted-foreground transition-colors group-hover:text-gilt sm:block"
             aria-hidden="true"
           />
         </div>

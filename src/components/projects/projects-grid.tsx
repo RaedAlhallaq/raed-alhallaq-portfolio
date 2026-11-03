@@ -113,7 +113,7 @@ export function ProjectsGrid() {
                       {project.stack?.join(' · ')}
                     </span>
                     <ArrowRight
-                      className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground rtl:rotate-180 rtl:group-hover:-translate-x-1"
+                      className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-gilt rtl:rotate-180 rtl:group-hover:-translate-x-1"
                       aria-hidden="true"
                     />
                   </Link>

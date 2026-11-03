@@ -33,8 +33,9 @@ export function Contact() {
   const profileSocials = socials.filter((social) => social.platform !== 'whatsapp')
 
   return (
-    <Section id="contact">
-      <div className="container-page">
+    <Section id="contact" className="relative overflow-x-clip">
+      <div aria-hidden="true" className="aurora-end pointer-events-none absolute inset-x-0 bottom-0 h-[26rem]" />
+      <div className="container-page relative">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-7">
             <p className="eyebrow">{localize(COPY.eyebrow, language)}</p>
@@ -48,7 +49,7 @@ export function Contact() {
             <div className="mt-9">
               <a
                 href={`mailto:${contact.email}`}
-                className="inline-block break-words text-xl font-medium tracking-tight text-foreground underline decoration-border-strong decoration-1 underline-offset-[6px] outline-none transition-colors hover:decoration-foreground focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring/40 sm:text-3xl"
+                className="inline-block break-words text-xl font-medium tracking-tight text-foreground underline decoration-border-strong decoration-1 underline-offset-[6px] outline-none transition-colors hover:decoration-gilt focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring/40 sm:text-3xl"
               >
                 {contact.email}
               </a>
@@ -89,7 +90,7 @@ export function Contact() {
                         ) : null}
                       </span>
                       <ArrowUpRight
-                        className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground rtl:-scale-x-100"
+                        className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gilt rtl:-scale-x-100"
                         aria-hidden="true"
                       />
                     </a>

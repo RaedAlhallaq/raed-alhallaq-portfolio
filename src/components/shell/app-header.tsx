@@ -49,7 +49,7 @@ export function AppHeader() {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/75 backdrop-blur-xl">
       <div className="container-page">
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
@@ -85,7 +85,7 @@ export function AppHeader() {
                       <span
                         aria-hidden="true"
                         className={cn(
-                          'absolute inset-x-0 -bottom-0.5 h-px origin-left bg-foreground transition-transform duration-300 rtl:origin-right',
+                          'absolute inset-x-0 -bottom-0.5 h-px origin-left bg-gilt transition-transform duration-300 rtl:origin-right',
                           active ? 'scale-x-100' : 'scale-x-0',
                         )}
                       />

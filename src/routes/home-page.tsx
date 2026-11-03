@@ -14,8 +14,8 @@ const TITLE = {
 }
 
 const DESCRIPTION = {
-  en: 'Co-Founder at Hireland and front-end developer (React & TypeScript), building clean, responsive interfaces in Gaza.',
-  ar: 'شريك مؤسس في Hireland ومطوّر واجهات أمامية (React وTypeScript)، يبني واجهات نظيفة ومتجاوبة من غزة.',
+  en: 'Co-Founder at Khibra Center for Training & Development and Hireland, and front-end developer (React & TypeScript) building clean, responsive interfaces in Gaza.',
+  ar: 'شريك مؤسس في مركز خبرة للتدريب والتطوير وفي Hireland، ومطوّر واجهات أمامية (React وTypeScript) يبني واجهات نظيفة ومتجاوبة من غزة.',
 }
 
 export function HomePage() {

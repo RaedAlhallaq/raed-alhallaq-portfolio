@@ -25,10 +25,13 @@ export function AppFooter() {
           <div className="lg:col-span-5">
             <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {localize({ en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' }, language)}
+              {localize(
+                { en: 'Co-Founder — Khibra Center for Training & Development · Hireland', ar: 'شريك مؤسس — مركز خبرة للتدريب والتطوير · Hireland' },
+                language,
+              )}
             </p>
             <p className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-foreground" />
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-gilt" />
               {language === 'ar' ? 'متاح للعمل والتعاون' : 'Available for work and collaboration'}
             </p>
           </div>

@@ -56,7 +56,7 @@ export function Journey() {
                     <p>{entry.period ? localize(entry.period, language) : '—'}</p>
                     {entry.current ? (
                       <p className="mt-1 inline-flex items-center gap-1.5 text-foreground">
-                        <span aria-hidden="true" className="size-1.5 rounded-full bg-foreground" />
+                        <span aria-hidden="true" className="size-1.5 rounded-full bg-gilt" />
                         {localize(COPY.current, language)}
                       </p>
                     ) : null}

@@ -19,7 +19,8 @@ const COPY = {
     { value: 'AR / EN', label: { en: 'Bilingual work', ar: 'عمل ثنائي اللغة' } },
   ],
   cardRole: { en: 'Front-End Developer (React & TypeScript)', ar: 'مطوّر واجهات أمامية (React وTypeScript)' },
-  hireland: { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
+  khibraRole: { en: 'Co-Founder — Khibra Center for Training & Development', ar: 'شريك مؤسس — مركز خبرة للتدريب والتطوير' },
+  hirelandRole: { en: 'Co-Founder at Hireland · Front-End Developer', ar: 'شريك مؤسس في Hireland · مطوّر واجهات أمامية' },
   location: { en: 'Gaza, Palestine', ar: 'غزة، فلسطين' },
   profileAlt: { en: 'Portrait of Raed Alhallaq', ar: 'صورة رائد الحلاق' },
   since: { en: 'Portfolio — 2026', ar: 'بورتفوليو — 2026' },
@@ -37,13 +38,14 @@ export function Hero() {
   const degree = education.degree
 
   return (
-    <section id="home" className="scroll-mt-24 pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pt-20">
-      <div className="container-page">
+    <section id="home" className="relative scroll-mt-24 overflow-x-clip pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pt-20">
+      <div aria-hidden="true" className="aurora-hero pointer-events-none absolute inset-x-0 -top-16 h-[36rem]" />
+      <div className="container-page relative">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="flex flex-col lg:col-span-7">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <p className="inline-flex items-center gap-2 text-xs font-medium text-foreground">
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-foreground" />
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-gilt" />
                 {localize(COPY.availability, language)}
               </p>
               <span aria-hidden="true" className="hidden h-3 w-px bg-border-strong sm:block" />
@@ -68,7 +70,7 @@ export function Hero() {
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
               <Link
                 to="/#projects"
-                className="inline-flex h-11 items-center gap-2 rounded-md bg-foreground px-6 text-sm font-medium text-background outline-none transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ring/50"
+                className="inline-flex h-11 items-center gap-2 rounded-md bg-foreground px-6 text-sm font-medium text-background shadow-[0_10px_36px_-12px_color-mix(in_oklch,var(--gilt)_55%,transparent)] outline-none transition-all hover:-translate-y-0.5 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring/50"
               >
                 {localize(COPY.viewProjects, language)}
                 <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
@@ -81,7 +83,8 @@ export function Hero() {
             <div className="mt-12 grid gap-4 border-t border-border pt-6 text-sm sm:grid-cols-2 lg:mt-auto lg:pt-8">
               <div>
                 <p className="eyebrow">{language === 'en' ? 'Current' : 'حالياً'}</p>
-                <p className="mt-2 font-medium">{localize(COPY.hireland, language)}</p>
+                <p className="mt-2 font-medium">{localize(COPY.khibraRole, language)}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{localize(COPY.hirelandRole, language)}</p>
               </div>
               <div>
                 <p className="eyebrow">{language === 'en' ? 'Education' : 'التعليم'}</p>
@@ -94,28 +97,38 @@ export function Hero() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden bg-muted sm:aspect-[5/4] lg:aspect-[4/5]">
-              {profile.avatarSrc ? (
-                <img
-                  src={profile.avatarSrc}
-                  alt={localize(COPY.profileAlt, language)}
-                  width={640}
-                  height={800}
-                  className="absolute inset-0 size-full object-cover object-center"
-                  loading="eager"
-                  fetchPriority="high"
+            <div className="group relative">
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 -top-3 -bottom-3 rounded-[1.25rem] bg-[radial-gradient(60%_60%_at_50%_100%,color-mix(in_oklch,var(--gilt)_16%,transparent),transparent_70%)] opacity-70 blur-md transition-opacity duration-700 group-hover:opacity-100"
+              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border bg-muted sm:aspect-[5/4] lg:aspect-[4/5]">
+                {profile.avatarSrc ? (
+                  <img
+                    src={profile.avatarSrc}
+                    alt={localize(COPY.profileAlt, language)}
+                    width={640}
+                    height={800}
+                    className="absolute inset-0 size-full object-cover object-center"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                ) : (
+                  <div className="absolute inset-0 grid place-items-center font-serif text-6xl text-muted-foreground">
+                    {isArabic ? 'ر' : 'RA'}
+                  </div>
+                )}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-[color-mix(in_oklch,var(--foreground)_14%,transparent)]"
                 />
-              ) : (
-                <div className="absolute inset-0 grid place-items-center font-serif text-6xl text-muted-foreground">
-                  {isArabic ? 'ر' : 'RA'}
-                </div>
-              )}
-            </div>
-            <div className="mt-3 flex items-baseline justify-between gap-4 text-xs text-muted-foreground">
-              <p className="font-medium text-foreground">{localize(COPY.cardRole, language)}</p>
-              <p className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted-foreground rtl:tracking-normal">
-                {localize(COPY.since, language)}
-              </p>
+              </div>
+              <div className="mt-4 flex items-baseline justify-between gap-4 text-xs text-muted-foreground">
+                <p className="font-medium text-foreground">{localize(COPY.cardRole, language)}</p>
+                <p className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted-foreground rtl:tracking-normal">
+                  {localize(COPY.since, language)}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -140,7 +153,7 @@ export function Hero() {
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     aria-label={social.handle ? `${social.label}: ${social.handle}` : social.label}
-                    className="inline-flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground outline-none transition-colors hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="inline-flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground outline-none transition-colors hover:border-gilt/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <Icon className="size-4" aria-hidden="true" />
                   </a>
@@ -148,7 +161,7 @@ export function Hero() {
               })}
             <a
               href={`mailto:${contact.email}`}
-              className="hidden text-xs text-muted-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground sm:inline"
+              className="hidden text-xs text-muted-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:text-foreground hover:decoration-gilt sm:inline"
             >
               {contact.email}
             </a>

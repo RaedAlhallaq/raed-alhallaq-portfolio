@@ -51,6 +51,7 @@
   --color-brand-hover: var(--brand-hover);
   --color-brand-soft: var(--brand-soft);
   --color-brand-ink: var(--brand-ink);
+  --color-gilt: var(--gilt);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -88,8 +89,9 @@
   --secondary-foreground: oklch(0.185 0.004 260);
   --muted: oklch(0.935 0.006 95);
   --muted-foreground: oklch(0.46 0.006 95);
-  --accent: oklch(0.93 0.012 85);
+  --accent: oklch(0.94 0.018 85);
   --accent-foreground: oklch(0.25 0.008 95);
+  --gilt: oklch(0.52 0.085 75);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.888 0.006 95);
   --input: oklch(0.888 0.006 95);
@@ -117,29 +119,30 @@
 }
 
 .dark {
-  --background: oklch(0.165 0.003 260);
-  --foreground: oklch(0.94 0.004 95);
-  --card: oklch(0.19 0.004 260);
-  --card-foreground: oklch(0.94 0.004 95);
-  --popover: oklch(0.19 0.004 260);
-  --popover-foreground: oklch(0.94 0.004 95);
-  --primary: oklch(0.94 0.004 95);
-  --primary-foreground: oklch(0.165 0.003 260);
+  --background: oklch(0.135 0.004 260);
+  --foreground: oklch(0.955 0.003 95);
+  --card: oklch(0.17 0.005 260);
+  --card-foreground: oklch(0.955 0.003 95);
+  --popover: oklch(0.17 0.005 260);
+  --popover-foreground: oklch(0.955 0.003 95);
+  --primary: oklch(0.955 0.003 95);
+  --primary-foreground: oklch(0.135 0.004 260);
   --secondary: oklch(0.235 0.005 260);
-  --secondary-foreground: oklch(0.94 0.004 95);
-  --muted: oklch(0.225 0.004 260);
+  --secondary-foreground: oklch(0.955 0.003 95);
+  --muted: oklch(0.225 0.005 260);
   --muted-foreground: oklch(0.72 0.006 95);
-  --accent: oklch(0.26 0.008 85);
+  --accent: oklch(0.27 0.02 85);
   --accent-foreground: oklch(0.94 0.004 95);
+  --gilt: oklch(0.83 0.07 85);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.72 0.006 95);
-  --border-strong: oklch(1 0 0 / 32%);
-  --brand: oklch(0.94 0.004 95);
-  --brand-hover: oklch(0.86 0.005 95);
-  --brand-soft: oklch(0.26 0.008 85);
-  --brand-ink: oklch(0.94 0.004 95);
+  --border-strong: oklch(1 0 0 / 28%);
+  --brand: oklch(0.955 0.003 95);
+  --brand-hover: oklch(0.87 0.005 95);
+  --brand-soft: oklch(0.27 0.02 85);
+  --brand-ink: oklch(0.955 0.003 95);
   color-scheme: dark;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -180,7 +183,7 @@
     text-wrap: pretty;
   }
   ::selection {
-    background-color: var(--foreground);
+    background-color: var(--gilt);
     color: var(--background);
   }
   @media (prefers-reduced-motion: reduce) {
@@ -209,6 +212,16 @@
   }
   [dir='rtl'] .eyebrow {
     letter-spacing: 0;
+  }
+  /* Gilded dash preceding every eyebrow label. */
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--gilt);
+    margin-inline-end: 0.625rem;
+    vertical-align: 0.15em;
   }
 
   .display-title {
@@ -265,7 +278,32 @@
 
   /* Quiet inline link: underline grows on hover. */
   .link {
-    @apply font-medium text-foreground underline decoration-border-strong decoration-1 underline-offset-4 outline-none transition-colors hover:decoration-foreground focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring/40;
+    @apply font-medium text-foreground underline decoration-border-strong decoration-1 underline-offset-4 outline-none transition-colors hover:decoration-gilt focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring/40;
+  }
+
+  /* Soft ambient glow used behind the hero and closing sections. */
+  .aurora-hero {
+    background:
+      radial-gradient(38rem 20rem at 78% -12%, color-mix(in oklch, var(--gilt) 12%, transparent), transparent 68%),
+      radial-gradient(30rem 18rem at 8% -6%, color-mix(in oklch, var(--foreground) 7%, transparent), transparent 64%);
+  }
+  .aurora-end {
+    background:
+      radial-gradient(36rem 18rem at 50% 110%, color-mix(in oklch, var(--gilt) 10%, transparent), transparent 70%),
+      radial-gradient(26rem 16rem at 90% 100%, color-mix(in oklch, var(--foreground) 6%, transparent), transparent 62%);
+  }
+
+  /* Thin gilt gradient rule for section separators. */
+  .gilt-rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in oklch, var(--gilt) 45%, transparent) 18%,
+      color-mix(in oklch, var(--gilt) 45%, transparent) 82%,
+      transparent
+    );
   }
 
   .line-grid {

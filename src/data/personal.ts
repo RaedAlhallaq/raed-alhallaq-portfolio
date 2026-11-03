@@ -38,12 +38,12 @@ export const profile: Profile = {
   about: {
     en: [
       "I'm a front-end developer based in Gaza, focused on interfaces that are clear, responsive, and dependable. My work sits where clean React code meets careful visual detail.",
-      "I co-founded Hireland and work there as its front-end developer. I also led the front-end team behind VolunGate, the Islamic University of Gaza's volunteering platform.",
+      "I co-founded Khibra, a center for training and development, and co-founded Hireland, where I also build the front-end. I also led the front-end team behind VolunGate, the Islamic University of Gaza's volunteering platform.",
       "I study computer science at IUG and keep strengthening my engineering foundations through programmes such as Gaza Sky Geeks' MRDT and Go Digital Palestine.",
     ],
     ar: [
       'أنا مطوّر واجهات أمامية من غزة، أركّز على بناء واجهات واضحة ومتجاوبة وموثوقة. يجتمع في عملي كود React النظيف مع الاهتمام الدقيق بالتفاصيل البصرية.',
-      'شاركت في تأسيس Hireland وأعمل فيها مطوّر واجهات أمامية. قدت أيضاً فريق الواجهات الأمامية في VolunGate، منصة التطوع في الجامعة الإسلامية بغزة.',
+      'شاركت في تأسيس مركز خبرة للتدريب والتطوير، وشاركت في تأسيس Hireland وأعمل فيها مطوّر واجهات أمامية. قدت أيضاً فريق الواجهات الأمامية في VolunGate، منصة التطوع في الجامعة الإسلامية بغزة.',
       'أدرس علوم الحاسوب في الجامعة الإسلامية، وأواصل تقوية أساسياتي الهندسية عبر برامج مثل MRDT من Gaza Sky Geeks وGo Digital Palestine.',
     ],
   },

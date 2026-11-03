@@ -19,7 +19,10 @@ const COPY = {
     {
       id: 'role',
       label: { en: 'Current role', ar: 'الدور الحالي' },
-      value: { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
+      value: {
+        en: 'Co-Founder — Khibra Center for Training & Development · Hireland',
+        ar: 'شريك مؤسس — مركز خبرة للتدريب والتطوير · Hireland',
+      },
     },
     {
       id: 'education',
