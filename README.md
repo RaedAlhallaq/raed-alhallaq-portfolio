@@ -1,51 +1,69 @@
-# Raed Al-Hallaq Portfolio
+# Raed Alhallaq — Portfolio
 
-A sleek, modern, and highly interactive personal portfolio website designed to showcase professional skills, journey, and projects.
+A bilingual, accessible portfolio for **Raed Alhallaq**, a front-end developer based in Gaza, Palestine. Built as a single-page application with React, TypeScript, Vite, and Tailwind CSS.
 
-##  Features
+The site presents verified work and background only: projects, roles, education, training, and certificates are sourced from Raed's GitHub, LinkedIn, and programme records. Screenshots and claims that are not verified are omitted rather than invented.
 
-- ** Dynamic Theme:** Seamless toggle between Dark and Light modes with persistent user preference.
-- ** Fully Responsive:** Optimized for all devices, from mobile phones to high-resolution desktops.
-- ** Interactive UI/UX:**
-    - **Parallax Effects:** Subtle mouse-tracking avatar movement.
-    - **Typewriter Effect:** Dynamic display of professional roles.
-    - **Scroll Progress:** Dual progress indicators (top bar and circular button).
-    - **Animated Skills:** Progress bars that animate upon reaching the section.
-- ** Project Showcases:** Categorized projects with detailed modals and image carousels.
-- ** Professional Journey:** A clean, animated timeline of education and experience.
-- ** Contact Form:** Robust form with real-time validation and local draft saving to prevent data loss.
+## Highlights
 
-##  Built With
+- **Bilingual AR/EN** — full Arabic and English content with persisted language choice
+- **RTL/LTR** — direction, layout, and icon orientation switch with the language
+- **Dark/light theme** — persisted preference with no flash on first paint
+- **15 project pages** — routed detail pages for product, platform, component, and template work
+- **Category filtering** — filter projects by full-stack, frontend, or backend work
+- **Accessibility** — semantic landmarks, skip link, visible focus states, keyboard-friendly controls, and reduced-motion support
+- **SEO** — per-page metadata, canonical URL, Open Graph tags, sitemap, and robots file
+- **Responsive** — tested from 390 px mobile through wide desktop
 
-- **HTML5:** Semantic structure for better SEO and accessibility.
-- **CSS3:** Custom styles with CSS Variables for theme management and modern layout techniques.
-- **Vanilla JavaScript:** Smooth interactivity and performance without heavy dependencies.
-- **Font Awesome:** High-quality icons for social links and UI components.
-- **Google Fonts:** Modern typography using the 'Poppins' font family.
+## Technology
 
-##  Project Structure
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
+- shadcn/ui and Base UI primitives
+- React Router (`/`, `/projects/:slug`)
+- lucide-react plus local brand SVGs
+- oxlint
 
-```text
-/
-├── css/             # Stylesheets (style.css, normalize.css)
-├── fonts/           # Local font assets
-├── images/          # Project and profile images
-├── index.html       # Main entry point
-├── main.js          # Core JavaScript logic
-└── Final-Project.pdf # Downloadable resume
+## Getting started
+
+Requires Node.js and npm.
+
+```bash
+npm install
+npm run dev
 ```
 
-##  How to Run Locally
+Open the URL printed by Vite. Production build and checks:
 
-1. Clone or download the repository.
-2. Open `index.html` in any modern web browser.
-3. No build tools or servers are required—just open and explore!
+```bash
+npm run build      # type-check + production build
+npm run preview    # serve the build locally
+npm run lint       # oxlint
+```
 
-##  Contact
+## Project structure
 
-- **Email:** raedgamer313@gmail.com
-- **Phone:** +972 597 886 717
-- **Location:** Gaza, Palestine
+```text
+src/
+├── app/           # router
+├── components/    # home sections, project components, shell, UI primitives
+├── data/          # verified content (profile, projects, journey, skills, certificates, socials)
+├── hooks/         # document metadata
+├── lib/           # localization and utility helpers
+├── providers/     # theme and language providers
+├── routes/        # page-level components
+└── types/         # shared TypeScript models
+```
 
----
-*Created with  by Raed Al-Hallaq*
+Content lives in `src/data/`. To add a project, add an entry to `src/data/projects.ts` and its URL to `public/sitemap.xml`. The detail route and filters pick it up automatically.
+
+## Deployment
+
+The app is a static SPA. `vercel.json` rewrites every path to `/` so client-side routes resolve on Vercel.
+
+```bash
+npm run build
+```
+
+Deploy the `dist/` output, or connect the repository to Vercel with the default Vite preset.
