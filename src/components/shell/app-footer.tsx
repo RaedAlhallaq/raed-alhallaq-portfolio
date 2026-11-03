@@ -19,21 +19,31 @@ export function AppFooter() {
   const profileSocials = socials.filter((social) => social.platform !== 'whatsapp')
 
   return (
-    <footer className="border-t border-border/60 bg-card/40">
+    <footer className="border-t border-border/70">
       <div className="container-page py-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{localize(profile.headline, language)}</p>
-            <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="tile flex flex-col justify-between gap-6 p-5 sm:col-span-2 lg:col-span-5">
+            <div>
+              <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {localize(
+                  { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
+                  language,
+                )}
+              </p>
+            </div>
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground">
               <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-500" />
               {language === 'ar' ? 'متاح للعمل والتعاون' : 'Available for work and collaboration'}
             </span>
           </div>
 
-          <nav aria-label={language === 'en' ? 'Footer' : 'الجزء السفلي'}>
+          <nav
+            aria-label={language === 'en' ? 'Footer' : 'الجزء السفلي'}
+            className="tile p-5 lg:col-span-3"
+          >
             <p className="eyebrow text-[0.625rem]">{language === 'en' ? 'Sections' : 'الأقسام'}</p>
-            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
               {sections.map((item) => (
                 <li key={item.id}>
                   <a
@@ -47,9 +57,9 @@ export function AppFooter() {
             </ul>
           </nav>
 
-          <div>
+          <div className="tile p-5 lg:col-span-4">
             <p className="eyebrow text-[0.625rem]">{language === 'en' ? 'Elsewhere' : 'حسابات أخرى'}</p>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-3 space-y-1.5">
               {profileSocials.map((social) => {
                 const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
                 if (!Icon) return null
@@ -71,13 +81,16 @@ export function AppFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
-            © {year} {localize(profile.name, language)}. {language === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
+            © {year} {localize(profile.name, language)}.{' '}
+            {language === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </p>
           <div className="flex items-center gap-4">
             <p className="text-xs text-muted-foreground">
-              {language === 'en' ? 'Built with React, Vite and Tailwind CSS.' : 'مبني باستخدام React و Vite و Tailwind CSS.'}
+              {language === 'en'
+                ? 'Built with React, Vite and Tailwind CSS.'
+                : 'مبني باستخدام React و Vite و Tailwind CSS.'}
             </p>
             <a
               href="#home"

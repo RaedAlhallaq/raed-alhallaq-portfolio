@@ -10,8 +10,8 @@ const COPY = {
   eyebrow: { en: '04 · Selected work', ar: '04 · أعمال مختارة' },
   title: { en: 'Projects built to be used.', ar: 'مشاريع بُنيت لتُستخدم.' },
   description: {
-    en: 'A mix of product work, reusable components, full-stack builds, and HTML/CSS templates. Filter by category to explore.',
-    ar: 'مزيج من أعمال المنتجات والمكوّنات القابلة لإعادة الاستخدام والمشاريع المتكاملة وقوالب HTML وCSS. صفِّ حسب الفئة للاستكشاف.',
+    en: 'Product work, reusable components, and full-stack builds. Templates and practice pieces are grouped below.',
+    ar: 'أعمال منتجات ومكوّنات قابلة لإعادة الاستخدام ومشاريع متكاملة. القوالب والأعمال التطبيقية مجمّعة أدناه.',
   },
   github: { en: 'All repositories', ar: 'كل المستودعات' },
 }

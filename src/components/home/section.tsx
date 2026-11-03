@@ -12,10 +12,7 @@ interface SectionProps {
  */
 export function Section({ id, className, children }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={cn('scroll-mt-24 border-t border-border/60 py-20 sm:py-24 lg:py-28', className)}
-    >
+    <section id={id} className={cn('scroll-mt-24 py-16 sm:py-20 lg:py-24', className)}>
       {children}
     </section>
   )
@@ -37,8 +34,8 @@ export function SectionIntro({ eyebrow, title, description, className, id }: Sec
   return (
     <div className={cn('max-w-3xl', className)}>
       {eyebrow ? (
-        <p className="eyebrow flex items-center gap-3">
-          <span aria-hidden="true" className="h-px w-8 bg-brand" />
+        <p className="eyebrow flex items-center gap-2.5">
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
           {eyebrow}
         </p>
       ) : null}
@@ -46,7 +43,9 @@ export function SectionIntro({ eyebrow, title, description, className, id }: Sec
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{description}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {description}
+        </p>
       ) : null}
     </div>
   )

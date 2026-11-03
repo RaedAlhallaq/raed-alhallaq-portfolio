@@ -9,13 +9,13 @@ import { ProjectsPreview } from '@/components/home/projects-preview'
 import { Skills } from '@/components/home/skills'
 
 const TITLE = {
-  en: 'Raed Alhallaq — Frontend Developer',
-  ar: 'رائد الحلاق — مطوّر واجهات أمامية',
+  en: 'Raed Alhallaq — Front-End Developer (React & TypeScript)',
+  ar: 'رائد الحلاق — مطوّر واجهات أمامية (React وTypeScript)',
 }
 
 const DESCRIPTION = {
-  en: 'Front-end developer in Gaza building clean, responsive interfaces with React, TypeScript, and Tailwind CSS. Co-Founder at Hireland.',
-  ar: 'مطوّر واجهات أمامية من غزة يبني واجهات نظيفة ومتجاوبة باستخدام React و TypeScript و Tailwind CSS. شريك مؤسس في Hireland.',
+  en: 'Co-Founder at Hireland and front-end developer (React & TypeScript), building clean, responsive interfaces in Gaza.',
+  ar: 'شريك مؤسس في Hireland ومطوّر واجهات أمامية (React وTypeScript)، يبني واجهات نظيفة ومتجاوبة من غزة.',
 }
 
 export function HomePage() {

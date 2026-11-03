@@ -24,12 +24,12 @@ export const profile: Profile = {
   },
   nameAscii: 'Raed Alhallaq',
   title: {
-    en: 'Frontend Developer',
-    ar: 'مطوّر واجهات أمامية',
+    en: 'Co-Founder | Front-End Developer (React & TypeScript) | Technical & Training Lead',
+    ar: 'شريك مؤسس | مطوّر واجهات أمامية (React وTypeScript) | مسؤول تقني وتدريبي',
   },
   headline: {
-    en: 'Co-Founder & Front-End Developer at Hireland',
-    ar: 'شريك مؤسس ومطوّر واجهات أمامية في Hireland',
+    en: 'Co-Founder | Front-End Developer (React & TypeScript) | Technical & Training Lead',
+    ar: 'شريك مؤسس | مطوّر واجهات أمامية (React وTypeScript) | مسؤول تقني وتدريبي',
   },
   positioning: {
     en: 'React-first front-end developer building clean, responsive interfaces.',

@@ -64,6 +64,11 @@ export interface Project {
   stack?: string[]
   /** Featured work appears in the main selected-work section. */
   featured?: boolean
+  /**
+   * Template and practice work listed under "Other projects" instead of the
+   * main gallery. Still reachable through its own detail page.
+   */
+  secondary?: boolean
   /** Short honest note, e.g. "Academic team project". */
   note?: LocalizedString
 }

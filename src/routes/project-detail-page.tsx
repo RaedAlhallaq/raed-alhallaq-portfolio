@@ -72,19 +72,19 @@ function MoreProjects({ current }: { current: Project }) {
   if (nextProjects.length === 0) return null
 
   return (
-    <div className="mt-14 border-t border-border/60 pt-10">
+    <div className="mt-10 border-t border-border/70 pt-8">
       <h2 className="text-lg font-semibold tracking-tight">{localize(COPY.moreProjects, language)}</h2>
-      <ul className="mt-5 grid gap-3 sm:grid-cols-3">
+      <ul className="mt-5 grid gap-4 sm:grid-cols-3">
         {nextProjects.map((project) => (
           <li key={project.slug}>
             <Link
               to={`/projects/${project.slug}`}
-              className="group flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-soft outline-none transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="tile-interactive group flex h-full flex-col p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <span className="tech-label text-[0.625rem]">
                 {String(stableProjectIndex(project.slug)).padStart(2, '0')}
               </span>
-              <span className="mt-2 text-sm font-semibold tracking-tight transition-colors group-hover:text-brand">
+              <span className="mt-2 text-base font-semibold tracking-tight transition-colors group-hover:text-brand">
                 {localize(project.title, language)}
               </span>
               <span className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
@@ -131,26 +131,28 @@ function ProjectDetailView({ project }: { project: Project }) {
   }
 
   return (
-    <article className="container-page flex-1 py-10 sm:py-14">
+    <article className="container-page flex-1 py-8 sm:py-10">
       <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
 
       <Reveal>
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-12">
-          <div>
+        <div className="mt-6 grid gap-4 lg:grid-cols-12">
+          <div className="tile flex flex-col p-6 sm:p-8 lg:col-span-7">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="chip bg-background text-foreground">{categoryLabel ?? localize(COPY.project, language)}</span>
+              <span className="chip bg-background text-foreground">
+                {categoryLabel ?? localize(COPY.project, language)}
+              </span>
               <span className="chip bg-background">{ownershipLabel}</span>
               {hasDemo ? (
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand-soft px-3 py-1 text-xs font-semibold text-brand-ink">
                   <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
                   {localize(LINK_TYPE_LABELS['live-demo'], language)}
                 </span>
               ) : null}
             </div>
 
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{title}</h1>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">{title}</h1>
 
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               {localize(project.summary, language)}
             </p>
 
@@ -159,7 +161,7 @@ function ProjectDetailView({ project }: { project: Project }) {
                 {project.stack.map((technology) => (
                   <li
                     key={technology}
-                    className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground"
+                    className="rounded-full border border-border bg-muted/60 px-3 py-1.5 text-xs font-medium text-foreground"
                   >
                     {technology}
                   </li>
@@ -167,7 +169,7 @@ function ProjectDetailView({ project }: { project: Project }) {
               </ul>
             ) : null}
 
-            <div className="mt-7">
+            <div className="mt-auto pt-7">
               <ProjectLinks project={project} size="lg" />
             </div>
           </div>
@@ -175,48 +177,44 @@ function ProjectDetailView({ project }: { project: Project }) {
           <ProjectVisual
             project={project}
             index={index}
-            className="aspect-[4/3] rounded-2xl border border-border shadow-soft"
+            className="min-h-[16rem] rounded-[1.5rem] border border-border/80 shadow-soft lg:col-span-5"
           />
         </div>
       </Reveal>
 
-      <div className="mt-12 grid gap-10 border-t border-border/60 pt-10 lg:grid-cols-[1.25fr_0.75fr]">
-        <Reveal>
-          <div>
-            <h2 className="text-lg font-semibold tracking-tight">{localize(COPY.overview, language)}</h2>
-            <div className="mt-4 max-w-[65ch] space-y-4 text-base leading-relaxed text-muted-foreground">
-              {project.details ? (
-                localize(project.details, language)
-                  .split('\n')
-                  .filter((line) => line.trim().length > 0)
-                  .map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-              ) : (
-                <p>{localize(project.summary, language)}</p>
-              )}
+      <div className="mt-4 grid gap-4 lg:grid-cols-12">
+        <Reveal className="tile p-6 sm:p-8 lg:col-span-8">
+          <h2 className="text-lg font-semibold tracking-tight">{localize(COPY.overview, language)}</h2>
+          <div className="mt-4 max-w-[65ch] space-y-4 text-base leading-relaxed text-muted-foreground">
+            {project.details ? (
+              localize(project.details, language)
+                .split('\n')
+                .filter((line) => line.trim().length > 0)
+                .map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+            ) : (
+              <p>{localize(project.summary, language)}</p>
+            )}
 
-              {project.note ? (
-                <p className="rounded-lg border border-border/70 bg-muted/40 px-3.5 py-2.5 text-sm text-muted-foreground">
-                  {localize(project.note, language)}
-                </p>
-              ) : null}
-            </div>
+            {project.note ? (
+              <p className="rounded-xl border border-border/70 bg-muted/50 px-3.5 py-2.5 text-sm text-muted-foreground">
+                {localize(project.note, language)}
+              </p>
+            ) : null}
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
-          <div className="card-surface p-5">
-            <h2 className="eyebrow">{localize(PROJECT_INFORMATION_LABEL, language)}</h2>
-            <dl className="mt-4 divide-y divide-border/70">
-              {factRows.map((row) => (
-                <div key={row.dt} className="grid gap-1 py-3 first:pt-0 last:pb-0">
-                  <dt className="text-[0.625rem] font-medium uppercase tracking-[0.16em] text-muted-foreground [dir='rtl']:tracking-normal">
-                    {row.dt}
-                  </dt>
-                  <dd className="text-sm font-medium text-foreground">{row.dd}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+        <Reveal delay={80} className="tile p-5 sm:p-6 lg:col-span-4">
+          <h2 className="eyebrow">{localize(PROJECT_INFORMATION_LABEL, language)}</h2>
+          <dl className="mt-4 divide-y divide-border/70">
+            {factRows.map((row) => (
+              <div key={row.dt} className="grid gap-1 py-3 first:pt-0 last:pb-0">
+                <dt className="text-[0.625rem] font-medium uppercase tracking-[0.16em] text-muted-foreground [dir='rtl']:tracking-normal">
+                  {row.dt}
+                </dt>
+                <dd className="text-sm font-medium text-foreground">{row.dd}</dd>
+              </div>
+            ))}
+          </dl>
         </Reveal>
       </div>
 

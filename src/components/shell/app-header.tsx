@@ -49,26 +49,28 @@ export function AppHeader() {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 shadow-header backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/80 shadow-header backdrop-blur-xl">
       <div className="container-page">
         <div className="flex h-16 items-center justify-between gap-3">
           <Link
             to="/#home"
             onClick={closeMenu}
-            aria-label={isArabic ? 'الرئيسية — رائد الحلاق' : 'Home — Raed Alhallaq'}
-            className="inline-flex items-center gap-2.5 rounded-lg outline-none transition-opacity hover:opacity-80 focus-visible:ring-3 focus-visible:ring-ring/50"
+            className="inline-flex items-center gap-2.5 rounded-xl outline-none transition-opacity hover:opacity-80 focus-visible:ring-3 focus-visible:ring-ring/50"
           >
-            <span className="relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-xl border border-border-strong bg-foreground text-sm font-semibold text-background shadow-soft select-none">
+            <span
+              aria-hidden="true"
+              className="relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground text-sm font-semibold text-background select-none"
+            >
               {isArabic ? 'ر' : 'R'}
-              <span aria-hidden="true" className="absolute end-1 top-1 size-1.5 rounded-full bg-brand" />
+              <span className="absolute end-1 top-1 size-1.5 rounded-full bg-brand" />
             </span>
-            <span className="hidden text-[0.9375rem] font-semibold tracking-tight sm:block">
+            <span className="sr-only text-[0.9375rem] font-semibold tracking-tight sm:not-sr-only">
               {localize({ en: 'Raed Alhallaq', ar: 'رائد الحلاق' }, language)}
             </span>
           </Link>
 
           <nav aria-label={isArabic ? 'التنقل الرئيسي' : 'Main navigation'} className="hidden md:block">
-            <ul className="flex items-center gap-0.5 rounded-full border border-border/70 bg-card/60 p-1">
+            <ul className="flex items-center gap-0.5 rounded-full border border-border/70 bg-card/70 p-1">
               {navItems.map((item) => {
                 const active = item.id === activeId
                 return (
@@ -77,9 +79,9 @@ export function AppHeader() {
                       to={item.href}
                       aria-current={active ? 'location' : undefined}
                       className={cn(
-                        'block rounded-full px-3 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
+                        'block rounded-full px-3.5 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
                         active
-                          ? 'bg-muted text-foreground shadow-soft'
+                          ? 'bg-foreground text-background'
                           : 'text-muted-foreground hover:text-foreground',
                       )}
                     >
@@ -108,7 +110,7 @@ export function AppHeader() {
               aria-label={languageActionLabel}
               title={languageActionLabel}
               onClick={toggleLanguage}
-              className="gap-1.5 rounded-full px-2.5"
+              className="gap-1.5 rounded-full px-2.5 font-semibold"
             >
               <Languages className="size-4 shrink-0" />
               {isArabic ? 'EN' : 'ع'}
@@ -137,7 +139,7 @@ export function AppHeader() {
           )}
         >
           <nav aria-label={isArabic ? 'قائمة الهاتف' : 'Mobile navigation'} className="container-page">
-            <ul className="flex flex-col gap-0.5 py-3">
+            <ul className="flex flex-col gap-1 py-3">
               {navItems.map((item) => {
                 const active = item.id === activeId
                 return (
@@ -147,9 +149,9 @@ export function AppHeader() {
                       onClick={closeMenu}
                       aria-current={active ? 'location' : undefined}
                       className={cn(
-                        'flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
+                        'flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
                         active
-                          ? 'bg-muted text-foreground'
+                          ? 'bg-foreground text-background'
                           : 'text-muted-foreground hover:bg-muted hover:text-foreground',
                       )}
                     >

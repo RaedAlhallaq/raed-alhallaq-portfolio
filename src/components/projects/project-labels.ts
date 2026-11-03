@@ -62,3 +62,13 @@ export const EMPTY_CATEGORY_TEXT: LocalizedString = {
   en: 'No projects in this category yet.',
   ar: 'لا توجد مشاريع في هذه الفئة بعد.',
 }
+
+export const OTHER_PROJECTS_TITLE: LocalizedString = {
+  en: 'Other projects',
+  ar: 'مشاريع أخرى',
+}
+
+export const OTHER_PROJECTS_TEXT: LocalizedString = {
+  en: 'Practice builds and challenge templates, kept out of the main gallery.',
+  ar: 'أعمال تطبيقية وقوالب تحديات، خارج المعرض الرئيسي.',
+}

@@ -15,7 +15,10 @@ import { Reveal } from '@/components/shared/reveal'
 
 const COPY = {
   eyebrow: { en: '01 · About', ar: '01 · نبذة' },
-  title: { en: 'A front-end developer with an engineer’s habits.', ar: 'مطوّر واجهات أمامية بعقلية مهندس.' },
+  title: {
+    en: 'A front-end developer with an engineer’s habits.',
+    ar: 'مطوّر واجهات أمامية بعقلية مهندس.',
+  },
   description: {
     en: 'Clean interfaces, readable code, and details that hold up after launch.',
     ar: 'واجهات نظيفة، وكود مقروء، وتفاصيل تصمد بعد الإطلاق.',
@@ -23,7 +26,12 @@ const COPY = {
   glance: { en: 'At a glance', ar: 'نظرة سريعة' },
   focus: { en: 'Focus', ar: 'مجالات التركيز' },
   rows: [
-    { id: 'role', icon: Briefcase, label: { en: 'Current role', ar: 'الدور الحالي' }, value: profile.headline },
+    {
+      id: 'role',
+      icon: Briefcase,
+      label: { en: 'Current role', ar: 'الدور الحالي' },
+      value: { en: 'Co-Founder at Hireland', ar: 'شريك مؤسس في Hireland' },
+    },
     {
       id: 'education',
       icon: GraduationCap,
@@ -96,70 +104,80 @@ export function About() {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <Reveal>
-            <div className="max-w-[62ch] space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {profile.about[language].map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+        <div className="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-12">
+          <Reveal className="tile flex flex-col p-6 sm:p-8 lg:col-span-7">
+            <p className="tech-label">01 / 04</p>
+            <div className="mt-5 max-w-[62ch] space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {profile.about[language].map((paragraph, index) => (
+                <p key={paragraph} className={index === 0 ? 'text-foreground' : undefined}>
+                  {paragraph}
+                </p>
               ))}
             </div>
+          </Reveal>
 
-            <ul className="mt-9 grid gap-3 sm:grid-cols-3">
-              {COPY.principles.map((principle) => {
-                const Icon = principle.icon
+          <Reveal delay={80} className="tile flex flex-col overflow-hidden lg:col-span-5">
+            <div className="flex items-center justify-between gap-3 border-b border-border/70 px-5 py-4">
+              <p className="eyebrow">{localize(COPY.glance, language)}</p>
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
+            </div>
+
+            <ul className="divide-y divide-border/70">
+              {COPY.rows.map((row) => {
+                const Icon = row.icon
                 return (
-                  <li key={principle.title.en} className="rounded-xl border border-border/80 bg-card/60 p-4">
-                    <Icon className="size-4 text-brand" aria-hidden="true" />
-                    <p className="mt-3 text-sm font-semibold tracking-tight">
-                      {localize(principle.title, language)}
-                    </p>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                      {localize(principle.text, language)}
+                  <li key={row.id} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3.5 px-5 py-3.5">
+                    <span className="row-span-2 mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand-ink">
+                      <Icon className="size-4" aria-hidden="true" />
+                    </span>
+                    <span className="eyebrow text-[0.625rem]">{localize(row.label, language)}</span>
+                    <p className="mt-1 min-w-0 text-sm font-medium leading-relaxed text-foreground">
+                      {localize(row.value, language)}
                     </p>
                   </li>
                 )
               })}
             </ul>
-          </Reveal>
 
-          <Reveal delay={100}>
-            <div className="card-surface overflow-hidden">
-              <div className="border-b border-border/70 px-5 py-4">
-                <p className="eyebrow">{localize(COPY.glance, language)}</p>
-              </div>
-
-              <ul className="divide-y divide-border/70">
-                {COPY.rows.map((row) => {
-                  const Icon = row.icon
-                  return (
-                    <li
-                      key={row.id}
-                      className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3.5 px-5 py-4"
-                    >
-                      <span className="row-span-2 mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-accent text-accent-foreground">
-                        <Icon className="size-4" aria-hidden="true" />
-                      </span>
-                      <span className="eyebrow text-[0.625rem]">{localize(row.label, language)}</span>
-                      <p className="mt-1 min-w-0 text-sm font-medium leading-relaxed text-foreground">
-                        {localize(row.value, language)}
-                      </p>
-                    </li>
-                  )
-                })}
+            <div className="mt-auto border-t border-border/70 px-5 py-4">
+              <p className="eyebrow text-[0.625rem]">{localize(COPY.focus, language)}</p>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {COPY.focusItems.map((item) => (
+                  <li key={item.en} className="chip bg-background">
+                    {localize(item, language)}
+                  </li>
+                ))}
               </ul>
-
-              <div className="border-t border-border/70 px-5 py-4">
-                <p className="eyebrow text-[0.625rem]">{localize(COPY.focus, language)}</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {COPY.focusItems.map((item) => (
-                    <li key={item.en} className="chip bg-background">
-                      {localize(item, language)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </Reveal>
+
+          {COPY.principles.map((principle, index) => {
+            const Icon = principle.icon
+            return (
+              <Reveal
+                key={principle.title.en}
+                delay={120 + index * 60}
+                className="tile flex flex-col gap-4 p-5 sm:p-6 lg:col-span-4"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="icon-tile">
+                    <Icon className="size-4.5" aria-hidden="true" />
+                  </span>
+                  <span className="tech-label text-[0.625rem]">
+                    {String(index + 2).padStart(2, '0')}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-base font-semibold tracking-tight">
+                    {localize(principle.title, language)}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {localize(principle.text, language)}
+                  </p>
+                </div>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </Section>

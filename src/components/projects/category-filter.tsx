@@ -32,7 +32,7 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
                 className={cn(
                   'inline-flex items-center rounded-full border px-3.5 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
                   isActive
-                    ? 'border-brand bg-brand text-primary-foreground'
+                    ? 'border-foreground bg-foreground text-background'
                     : 'border-border bg-card text-muted-foreground hover:border-border-strong hover:text-foreground',
                 )}
               >

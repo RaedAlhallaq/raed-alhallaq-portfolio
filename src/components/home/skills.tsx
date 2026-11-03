@@ -29,6 +29,13 @@ const CATEGORY_META: Record<SkillCategory, { label: { en: string; ar: string }; 
 
 const CATEGORY_ORDER: SkillCategory[] = ['frontend', 'backend', 'languages', 'tools']
 
+const CATEGORY_SPAN: Record<SkillCategory, string> = {
+  frontend: 'lg:col-span-7',
+  backend: 'lg:col-span-5',
+  languages: 'lg:col-span-5',
+  tools: 'lg:col-span-7',
+}
+
 const COPY = {
   eyebrow: { en: '03 · Skills', ar: '03 · المهارات' },
   title: { en: 'A focused toolkit.', ar: 'صندوق أدوات مركّز.' },
@@ -46,7 +53,7 @@ const LEVEL_LABEL: Record<SkillLevel, { en: string; ar: string }> = {
 }
 
 function chipClasses(level: SkillLevel = 'core') {
-  if (level === 'core') return 'border-border-strong bg-muted/60 text-foreground'
+  if (level === 'core') return 'border-border-strong bg-muted/70 text-foreground'
   if (level === 'working') return 'border-border bg-background text-foreground'
   return 'border-border/60 bg-transparent text-muted-foreground'
 }
@@ -58,7 +65,7 @@ function SkillChip({ skill, large = false }: { skill: Skill; large?: boolean }) 
   return (
     <li
       className={cn(
-        'inline-flex items-center gap-2 rounded-lg border font-medium transition-colors',
+        'inline-flex items-center gap-2 rounded-full border font-medium transition-colors',
         large ? 'px-3.5 py-2 text-sm' : 'px-3 py-1.5 text-xs',
         chipClasses(level),
       )}
@@ -75,7 +82,7 @@ function SkillChip({ skill, large = false }: { skill: Skill; large?: boolean }) 
   )
 }
 
-function SkillCard({
+function SkillTile({
   category,
   items,
   large = false,
@@ -93,13 +100,14 @@ function SkillCard({
   return (
     <div
       className={cn(
-        'card-surface flex h-full flex-col p-5 sm:p-6',
-        large && 'bg-gradient-to-br from-card to-muted/40',
+        'tile flex h-full flex-col p-5 sm:p-6',
+        CATEGORY_SPAN[category],
+        large && 'bg-gradient-to-br from-card via-card to-brand-soft/60',
       )}
     >
       <div className="flex items-center gap-3">
-        <span className="grid size-9 place-items-center rounded-xl bg-accent text-accent-foreground">
-          <Icon className="size-4" aria-hidden="true" />
+        <span className="icon-tile">
+          <Icon className="size-4.5" aria-hidden="true" />
         </span>
         <div className="min-w-0 flex-1">
           <h3 className={cn('font-semibold tracking-tight', large ? 'text-lg' : 'text-base')}>
@@ -142,14 +150,10 @@ export function Skills() {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-14">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-12">
           {grouped.map((group, index) => (
-            <Reveal
-              key={group.category}
-              delay={index * 60}
-              className={cn(group.category === 'frontend' && 'sm:col-span-2')}
-            >
-              <SkillCard
+            <Reveal key={group.category} delay={index * 60} className="h-full">
+              <SkillTile
                 category={group.category}
                 items={group.items}
                 large={group.category === 'frontend'}
@@ -160,7 +164,7 @@ export function Skills() {
         </div>
 
         <Reveal delay={120}>
-          <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 px-1">
             {(['core', 'working', 'familiar'] as SkillLevel[]).map((level) => (
               <li key={level} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span

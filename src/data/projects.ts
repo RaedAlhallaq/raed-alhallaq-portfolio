@@ -314,6 +314,7 @@ export const projects: Project[] = [
       ar: 'تطبيق مكتبة كتب بـ PHP — مستودع فقط.',
     },
     ownership: { kind: 'individual' },
+    secondary: true,
     stack: ['PHP'],
     images: [],
     links: [
@@ -341,6 +342,7 @@ export const projects: Project[] = [
     },
     ownership: { kind: 'individual' },
     stack: ['HTML', 'CSS'],
+    secondary: true,
     featured: false,
     images: [],
     links: [
@@ -372,6 +374,7 @@ export const projects: Project[] = [
     },
     ownership: { kind: 'individual' },
     stack: ['HTML', 'CSS'],
+    secondary: true,
     featured: false,
     images: [],
     links: [
@@ -403,6 +406,7 @@ export const projects: Project[] = [
     },
     ownership: { kind: 'individual' },
     stack: ['HTML', 'CSS'],
+    secondary: true,
     featured: false,
     images: [],
     links: [

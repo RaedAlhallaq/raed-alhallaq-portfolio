@@ -5,9 +5,9 @@ import type { Contact } from './contact'
 export interface Profile {
   name: LocalizedString
   nameAscii: string
-  /** Verified professional title: Frontend Developer. */
+  /** Verified professional title from the LinkedIn headline. */
   title: LocalizedString
-  /** Verified current headline, e.g. Co-Founder & Front-End Developer at Hireland. */
+  /** Verified current headline. */
   headline: LocalizedString
   /** Short verified positioning line. */
   positioning?: LocalizedString

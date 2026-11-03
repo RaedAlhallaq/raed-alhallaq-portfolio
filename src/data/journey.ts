@@ -27,10 +27,10 @@ export const education: Education = {
 
 export const experience: ExperienceEntry[] = [
   {
-    id: 'hireland',
+    id: 'hireland-cofounder',
     role: {
-      en: 'Co-Founder & Front-End Developer',
-      ar: 'شريك مؤسس ومطوّر واجهات أمامية',
+      en: 'Co-Founder',
+      ar: 'شريك مؤسس',
     },
     organization: {
       en: 'Hireland',
@@ -45,6 +45,27 @@ export const experience: ExperienceEntry[] = [
     summary: {
       en: 'Co-founding Hireland and building its front-end experience.',
       ar: 'المشاركة في تأسيس Hireland وبناء تجربة واجهاتها الأمامية.',
+    },
+  },
+  {
+    id: 'hireland-frontend',
+    role: {
+      en: 'Front-End Developer (React & TypeScript)',
+      ar: 'مطوّر واجهات أمامية (React وTypeScript)',
+    },
+    organization: {
+      en: 'Hireland',
+      ar: 'Hireland',
+    },
+    type: 'work',
+    current: true,
+    period: {
+      en: 'Present',
+      ar: 'حتى الآن',
+    },
+    summary: {
+      en: 'Building Hireland’s interfaces with React and TypeScript.',
+      ar: 'بناء واجهات Hireland باستخدام React وTypeScript.',
     },
   },
   {
