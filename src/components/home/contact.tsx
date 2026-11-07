@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin } from 'lucide-react'
+import { Mail, MapPin, MessageCircle } from 'lucide-react'
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '@/components/shared/brand-icons'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
@@ -13,7 +13,8 @@ const COPY = {
     en: 'Available for front-end work, freelance projects, and collaboration. Reach out directly — no forms, no middlemen.',
     ar: 'متاح للعمل في تطوير الواجهات والمشاريع الحرة والتعاون. تواصل معي مباشرة — دون نماذج أو وسطاء.',
   },
-  whatsapp: { en: 'Message on WhatsApp', ar: 'راسلني على واتساب' },
+  emailCta: { en: 'Email me', ar: 'راسلني عبر البريد' },
+  whatsapp: { en: 'WhatsApp', ar: 'واتساب' },
   elsewhere: { en: 'Elsewhere', ar: 'حسابات أخرى' },
   location: { en: 'Gaza, Palestine', ar: 'غزة، فلسطين' },
   preference: {
@@ -34,40 +35,58 @@ export function Contact() {
 
   return (
     <Section id="contact" className="relative overflow-x-clip">
-      <div aria-hidden="true" className="aurora-end pointer-events-none absolute inset-x-0 bottom-0 h-[26rem]" />
       <div className="container-page relative">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-7">
-            <p className="eyebrow">{localize(COPY.eyebrow, language)}</p>
-            <h2 id="contact-heading" className="heading-section mt-4 max-w-xl">
-              {localize(COPY.title, language)}
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {localize(COPY.description, language)}
-            </p>
+        <Reveal>
+          <p className="eyebrow">{localize(COPY.eyebrow, language)}</p>
+          <h2 id="contact-heading" className="display-title mt-2 max-w-4xl">
+            {localize(COPY.title, language)}
+          </h2>
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+            {localize(COPY.description, language)}
+          </p>
+        </Reveal>
 
-            <div className="mt-9">
+        <div className="mt-12 grid gap-10 lg:grid-cols-12">
+          {/* Direct channels */}
+          <Reveal className="lg:col-span-6">
+            <div className="grid gap-3 sm:grid-cols-2">
               <a
                 href={`mailto:${contact.email}`}
-                className="inline-block break-words text-xl font-medium tracking-tight text-foreground underline decoration-border-strong decoration-1 underline-offset-[6px] outline-none transition-colors hover:decoration-gilt focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring/40 sm:text-3xl"
+                className="group flex min-h-24 flex-col justify-between border border-border p-5 outline-none transition-colors hover:border-accent focus-visible:border-accent"
               >
-                {contact.email}
+                <span className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors group-hover:border-accent group-hover:text-accent">
+                  <Mail className="size-4" aria-hidden="true" />
+                </span>
+                <span className="mt-5 text-xs text-muted-foreground">{localize(COPY.emailCta, language)}</span>
+                <span className="break-all text-sm font-medium text-foreground transition-colors group-hover:text-accent">
+                  {contact.email}
+                </span>
               </a>
-              <div className="mt-5">
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="link inline-flex items-center gap-1.5 text-sm"
-                >
-                  {localize(COPY.whatsapp, language)}
-                  <ArrowUpRight className="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
-                </a>
-              </div>
+
+              <a
+                href={contact.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="group flex min-h-24 flex-col justify-between border border-border p-5 outline-none transition-colors hover:border-accent focus-visible:border-accent"
+              >
+                <span className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors group-hover:border-accent group-hover:text-accent">
+                  <MessageCircle className="size-4" aria-hidden="true" />
+                </span>
+                <span className="mt-5 text-xs text-muted-foreground">{localize(COPY.whatsapp, language)}</span>
+                <span className="text-sm font-medium text-foreground transition-colors group-hover:text-accent">
+                  {contact.phone}
+                </span>
+              </a>
             </div>
+
+            <p className="mt-5 flex max-w-md items-center gap-2 text-xs text-muted-foreground">
+              <MapPin className="size-3.5 text-accent" aria-hidden="true" />
+              {localize(COPY.location, language)} · {localize(COPY.preference, language)}
+            </p>
           </Reveal>
 
-          <Reveal delay={80} className="lg:col-span-5">
+          {/* Elsewhere list */}
+          <Reveal delay={80} className="lg:col-span-6">
             <p className="eyebrow">{localize(COPY.elsewhere, language)}</p>
             <ul className="mt-5">
               {profileSocials.map((social) => {
@@ -80,19 +99,21 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       aria-label={social.handle ? `${social.label}: ${social.handle}` : social.label}
-                      className="group flex items-center justify-between gap-4 py-3.5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/40"
+                      className="group flex min-h-14 items-center justify-between gap-4 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-accent/40"
                     >
                       <span className="flex min-w-0 items-baseline gap-3">
-                        <Icon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-                        <span className="text-sm font-medium">{social.label}</span>
+                        <Icon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" aria-hidden="true" />
+                        <span className="text-sm font-medium transition-colors group-hover:text-accent">{social.label}</span>
                         {social.handle ? (
                           <span className="truncate text-xs text-muted-foreground">@{social.handle}</span>
                         ) : null}
                       </span>
-                      <ArrowUpRight
-                        className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gilt rtl:-scale-x-100"
+                      <span
                         aria-hidden="true"
-                      />
+                        className="text-muted-foreground transition-colors group-hover:text-accent"
+                      >
+                        ↗
+                      </span>
                     </a>
                   </li>
                 )
@@ -100,16 +121,6 @@ export function Contact() {
             </ul>
           </Reveal>
         </div>
-
-        <Reveal delay={120}>
-          <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground">
-            <p className="inline-flex items-center gap-1.5">
-              <MapPin className="size-3.5" aria-hidden="true" />
-              {localize(COPY.location, language)}
-            </p>
-            <p className="max-w-md">{localize(COPY.preference, language)}</p>
-          </div>
-        </Reveal>
       </div>
     </Section>
   )

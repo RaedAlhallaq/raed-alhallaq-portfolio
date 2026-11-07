@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
 import { cn } from '@/lib/utils'
@@ -22,29 +21,35 @@ export function ProjectCard({ project, index, wide = false }: ProjectCardProps) 
   const ownershipLabel = ownershipEvidenceLabel(project, language)
 
   return (
-    <article className="group relative flex h-full flex-col transition-transform duration-500 ease-out hover:-translate-y-1">
-      <div className="overflow-hidden rounded-lg border border-border">
+    <article className="group relative flex h-full flex-col">
+      {/* Visual frame: thin inner border appears on hover like the reference grid. */}
+      <div className="relative overflow-hidden border border-border transition-colors group-hover:border-transparent">
         <ProjectVisual
           project={project}
           index={index}
           className={cn(
-            'w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]',
+            'w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]',
             wide ? 'aspect-[16/10] sm:aspect-[21/9]' : 'aspect-[4/3]',
           )}
         />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 border-2 border-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
       </div>
 
-      <div className="mt-4 flex items-baseline justify-between gap-4">
-        <h3 className={cn('font-semibold tracking-tight', wide ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl')}>
+      {/* Title row with a red editorial index. */}
+      <div className="mt-4 flex items-start justify-between gap-4">
+        <h3 className={cn('font-semibold tracking-tight', wide ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg')}>
           <Link
             to={`/projects/${project.slug}`}
-            className="rounded-sm underline-offset-4 outline-none after:absolute after:inset-0 after:content-[''] decoration-transparent hover:underline hover:decoration-gilt focus-visible:ring-2 focus-visible:ring-ring/40"
+            className="rounded-sm text-foreground outline-none transition-colors after:absolute after:inset-0 after:content-[''] hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/40"
           >
             {title}
             <span className="sr-only"> — {localize(VIEW_DETAILS_LABEL, language)}</span>
           </Link>
         </h3>
-        <span className="shrink-0 font-mono text-[0.625rem] text-muted-foreground">
+        <span className="num-display shrink-0 font-mono text-sm sm:text-base">
           {String(index).padStart(2, '0')}
         </span>
       </div>
@@ -64,18 +69,15 @@ export function ProjectCard({ project, index, wide = false }: ProjectCardProps) 
         {localize(project.summary, language)}
       </p>
 
+      {/* Stack line + links footer, the card's contact shadow row. */}
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3">
-        <span className="text-[0.6875rem] text-muted-foreground">
+        <span className="tech-label max-w-[60%] truncate">
           {project.stack?.slice(0, wide ? 5 : 3).join(' · ')}
         </span>
         <div className="pointer-events-none relative z-10 flex items-center gap-3">
           <div className="pointer-events-auto">
             <ProjectLinks project={project} />
           </div>
-          <ArrowUpRight
-            className="hidden size-4 text-muted-foreground transition-colors group-hover:text-gilt sm:block"
-            aria-hidden="true"
-          />
         </div>
       </div>
     </article>

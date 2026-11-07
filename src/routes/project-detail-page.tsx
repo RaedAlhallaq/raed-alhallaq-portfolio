@@ -28,13 +28,17 @@ const COPY = {
   category: { en: 'Category', ar: 'الفئة' },
   ownership: { en: 'Ownership', ar: 'الملكية' },
   role: { en: 'Role', ar: 'الدور' },
+  notFound: { en: '404', ar: '٤٠٤' },
 }
 
-function BackLink({ label }: { label: string }) {
+function BackLink({ label, className }: { label: string; className?: string }) {
   return (
     <Link
       to="/#projects"
-      className="inline-flex items-center gap-1.5 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+      className={
+        className ??
+        'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/40'
+      }
     >
       <ArrowLeft className="size-4 shrink-0 rtl:rotate-180" aria-hidden="true" />
       {label}
@@ -51,8 +55,10 @@ function ProjectNotFound() {
 
   return (
     <section className="container-page flex-1 py-20 sm:py-28">
-      <p className="eyebrow">404</p>
-      <h1 className="heading-section mt-4">{localize(PROJECT_NOT_FOUND_TITLE, language)}</h1>
+      <p className="num-display display-hero mt-2 select-none opacity-80">
+        {localize(COPY.notFound, language)}
+      </p>
+      <h1 className="heading-section mt-6">{localize(PROJECT_NOT_FOUND_TITLE, language)}</h1>
       <p className="mt-3 text-muted-foreground">{localize(PROJECT_NOT_FOUND_TEXT, language)}</p>
       <div className="mt-8">
         <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
@@ -79,13 +85,13 @@ function MoreProjects({ current }: { current: Project }) {
           <li key={project.slug} className="border-t border-border last:border-b">
             <Link
               to={`/projects/${project.slug}`}
-              className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-4 py-4 outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring/40"
+              className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-4 py-4 outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              <span className="font-mono text-[0.625rem] text-muted-foreground">
+              <span className="num-display font-mono text-sm">
                 {String(stableProjectIndex(project.slug)).padStart(2, '0')}
               </span>
               <span className="min-w-0">
-                <span className="block text-base font-medium tracking-tight transition-colors group-hover:underline group-hover:underline-offset-4">
+                <span className="block text-base font-medium tracking-tight transition-colors group-hover:text-accent">
                   {localize(project.title, language)}
                 </span>
                 <span className="mt-0.5 block truncate text-xs text-muted-foreground">
@@ -93,7 +99,7 @@ function MoreProjects({ current }: { current: Project }) {
                 </span>
               </span>
               <ArrowRight
-                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-gilt rtl:rotate-180 rtl:group-hover:-translate-x-1"
+                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-accent rtl:rotate-180 rtl:group-hover:-translate-x-1"
                 aria-hidden="true"
               />
             </Link>
@@ -137,8 +143,13 @@ function ProjectDetailView({ project }: { project: Project }) {
       <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
 
       <Reveal>
+        {/* Catalogue strip: red index + category rail. */}
         <div className="mt-8 max-w-4xl">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+            <span className="num-display font-mono text-sm">
+              {String(index).padStart(2, '0')}
+            </span>
+            <span aria-hidden="true">·</span>
             <span>{categoryLabel ?? localize(COPY.project, language)}</span>
             <span aria-hidden="true">·</span>
             <span>{ownershipLabel}</span>
@@ -150,18 +161,14 @@ function ProjectDetailView({ project }: { project: Project }) {
             ) : null}
           </div>
 
-          <h1 className="detail-title mt-4">
-            {title}
-          </h1>
+          <h1 className="display-title mt-4">{title}</h1>
 
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {localize(project.summary, language)}
           </p>
 
           {project.stack && project.stack.length > 0 ? (
-            <p className="mt-5 font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground rtl:tracking-normal">
-              {project.stack.join(' · ')}
-            </p>
+            <p className="tech-label mt-5">{project.stack.join(' · ')}</p>
           ) : null}
 
           <div className="mt-7">
@@ -192,7 +199,7 @@ function ProjectDetailView({ project }: { project: Project }) {
             )}
 
             {project.note ? (
-              <p className="border-s border-border-strong ps-4 text-sm text-muted-foreground">
+              <p className="border-s-2 border-accent ps-4 text-sm text-muted-foreground">
                 {localize(project.note, language)}
               </p>
             ) : null}

@@ -6,7 +6,7 @@ import { Section, SectionIntro } from './section'
 import { Reveal } from '@/components/shared/reveal'
 
 const COPY = {
-  eyebrow: { en: '02 — Experience & journey', ar: '02 — الخبرة والمسيرة' },
+  eyebrow: { en: '03 — Experience & journey', ar: '03 — الخبرة والمسيرة' },
   title: { en: 'Work, study, and training.', ar: 'العمل والدراسة والتدريب.' },
   description: {
     en: 'A verified record of the roles, degree, and programmes that shape how I build.',
@@ -43,30 +43,36 @@ export function Journey() {
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-10">
+          {/* Experience rows: red index, period column, role + org. */}
           <Reveal className="lg:col-span-7">
             <h3 className="eyebrow">{localize(COPY.experience, language)}</h3>
             <ol className="mt-5">
-              {experience.map((entry) => (
+              {experience.map((entry, index) => (
                 <li
                   key={entry.id}
-                  className="grid gap-2 border-t border-border py-6 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-8"
+                  className="grid gap-3 border-t border-border py-6 sm:grid-cols-[6rem_minmax(0,1fr)] sm:gap-8"
                 >
-                  <div className="text-xs leading-relaxed text-muted-foreground">
-                    <p>{entry.period ? localize(entry.period, language) : '—'}</p>
-                    {entry.current ? (
-                      <p className="mt-1 inline-flex items-center gap-1.5 text-foreground">
-                        <span aria-hidden="true" className="size-1.5 rounded-full bg-gilt" />
-                        {localize(COPY.current, language)}
-                      </p>
-                    ) : null}
+                  <div className="flex items-start gap-3 text-xs leading-relaxed text-muted-foreground sm:flex-col sm:gap-1.5">
+                    <span className="num-display min-w-10 text-xl sm:text-2xl">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <p>{entry.period ? localize(entry.period, language) : '—'}</p>
+                      {entry.current ? (
+                        <p className="mt-1 inline-flex items-center gap-1.5 text-foreground">
+                          <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                          {localize(COPY.current, language)}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold tracking-tight sm:text-xl">
                       {localize(entry.role, language)}
                     </h4>
-                    <p className="mt-1 text-sm font-medium text-foreground">
+                    <p className="mt-1 text-sm font-medium text-accent">
                       {localize(entry.organization, language)}
                     </p>
                     {entry.summary ? (
@@ -80,10 +86,13 @@ export function Journey() {
             </ol>
           </Reveal>
 
+          {/* Education + certificates panels in one accent-framed column. */}
           <Reveal delay={80} className="lg:col-span-5">
-            <div>
-              <h3 className="eyebrow">{localize(COPY.education, language)}</h3>
-              <div className="mt-5 border-t border-border pt-5">
+            <div className="border border-border">
+              <div className="border-b border-border px-5 py-3">
+                <h3 className="eyebrow">{localize(COPY.education, language)}</h3>
+              </div>
+              <div className="px-5 py-5">
                 <p className="text-base font-semibold tracking-tight">
                   {localize(education.degree, language)}
                 </p>
@@ -95,15 +104,15 @@ export function Journey() {
                   {localize(COPY.inProgress, language)}
                 </p>
               </div>
-            </div>
 
-            <div className="mt-10">
-              <h3 className="eyebrow">{localize(COPY.certifications, language)}</h3>
-              <ul className="mt-5">
+              <div className="border-t border-border px-5 py-3">
+                <h3 className="eyebrow">{localize(COPY.certifications, language)}</h3>
+              </div>
+              <ul className="px-5 pb-3">
                 {certifications.map((certificate) => (
                   <li
                     key={certificate.id}
-                    className="flex items-baseline justify-between gap-4 border-t border-border py-3.5"
+                    className="flex items-baseline justify-between gap-4 border-b border-border/70 py-3.5 last:border-0"
                   >
                     <div className="min-w-0">
                       <p className="text-sm font-medium leading-snug">
@@ -113,7 +122,7 @@ export function Journey() {
                         {localize(certificate.issuer, language)}
                       </p>
                     </div>
-                    <span className="font-mono text-[0.625rem] text-muted-foreground">
+                    <span className="font-mono text-[0.625rem] text-accent">
                       {certificate.year}
                     </span>
                   </li>
@@ -122,19 +131,20 @@ export function Journey() {
             </div>
           </Reveal>
 
+          {/* Training programmes in a full-width bordered cell grid. */}
           <Reveal delay={140} className="lg:col-span-12">
             <h3 className="eyebrow">{localize(COPY.training, language)}</h3>
-            <ul className="mt-5 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-5 grid border-s border-t border-border sm:grid-cols-2 lg:grid-cols-3">
               {trainings.map((entry) => {
                 const status = statusLabel(entry, language)
                 return (
-                  <li key={entry.id} className="border-t border-border pt-5">
+                  <li key={entry.id} className="border-b border-e border-border p-6">
                     <div className="flex items-baseline justify-between gap-3">
                       <p className="text-sm font-semibold leading-snug">
                         {localize(entry.name, language)}
                       </p>
                       {status ? (
-                        <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.1em] text-muted-foreground">
+                        <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.1em] text-accent">
                           {status}
                         </span>
                       ) : null}

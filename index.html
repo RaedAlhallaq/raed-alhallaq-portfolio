@@ -7,8 +7,8 @@
     <meta name="author" content="Raed Alhallaq" />
     <meta name="robots" content="index, follow" />
     <meta name="description" content="Raed Alhallaq — Co-Founder at Khibra Center for Training & Development and Hireland, Front-End Developer (React & TypeScript). Building clean, responsive interfaces in Gaza, Palestine." />
-    <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0d0e10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2efeb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#090909" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://raed-alhallaq-portfolio.vercel.app/" />
     <link rel="preload" as="image" href="/avatar.png" />
     <meta property="og:type" content="website" />
@@ -26,12 +26,15 @@
       ;(function () {
         var theme = null
         var lang = null
+        var motion = null
         try {
           theme = localStorage.getItem('raed_portfolio_theme')
           lang = localStorage.getItem('raed_portfolio_lang')
+          motion = localStorage.getItem('raed_portfolio_motion')
         } catch (error) {
           theme = null
           lang = null
+          motion = null
         }
         if (theme === 'light') {
           document.documentElement.classList.remove('dark')
@@ -42,6 +45,10 @@
           document.documentElement.lang = 'ar'
           document.documentElement.dir = 'rtl'
           document.title = 'رائد الحلاق — مطوّر واجهات أمامية (React وTypeScript)'
+        }
+        /* Motion preference (default: on) must apply before first paint. */
+        if (motion === 'off') {
+          document.documentElement.dataset.motion = 'off'
         }
       })()
     </script>

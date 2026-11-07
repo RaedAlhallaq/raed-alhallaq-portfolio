@@ -10,15 +10,15 @@ interface ProjectVisualProps {
 }
 
 const WASHES = [
-  'linear-gradient(155deg, color-mix(in oklch, var(--foreground) 8%, var(--background)), color-mix(in oklch, var(--gilt) 4%, var(--background)) 60%, var(--background) 88%)',
+  'linear-gradient(155deg, color-mix(in oklch, var(--foreground) 8%, var(--background)), color-mix(in oklch, var(--accent) 4%, var(--background)) 60%, var(--background) 88%)',
   'linear-gradient(135deg, color-mix(in oklch, var(--foreground) 5%, var(--background)), var(--background) 64%)',
-  'linear-gradient(170deg, color-mix(in oklch, var(--foreground) 11%, var(--background)), color-mix(in oklch, var(--gilt) 3%, var(--background)) 66%, var(--background) 92%)',
+  'linear-gradient(170deg, color-mix(in oklch, var(--foreground) 11%, var(--background)), color-mix(in oklch, var(--accent) 3%, var(--background)) 66%, var(--background) 92%)',
   'linear-gradient(145deg, color-mix(in oklch, var(--foreground) 4%, var(--background)), var(--background) 58%)',
 ]
 
 /**
  * Image-free project identity panel: a quiet ink wash, a faint technical
- * grid, and the project's initial as a large editorial monogram. Real
+ * grid, and the project initial as an oversized red display glyph. Real
  * screenshots render automatically once project.images is populated.
  */
 export function ProjectVisual({ project, index = 1, className }: ProjectVisualProps) {
@@ -47,15 +47,15 @@ export function ProjectVisual({ project, index = 1, className }: ProjectVisualPr
     >
       <div className="line-grid absolute inset-0 opacity-70" />
 
-      <span className="absolute start-4 top-3.5 font-mono text-[0.625rem] tracking-[0.12em] text-muted-foreground">
+      <span className="num-display absolute start-4 top-3.5 font-mono text-xs tracking-[0.12em]">
         {String(index).padStart(2, '0')}
       </span>
 
-      <span className="absolute -bottom-8 end-2 font-serif text-[7rem] leading-none text-foreground/15 sm:text-[9rem]">
+      <span className="display absolute -bottom-6 end-2 text-[7rem] leading-none text-accent/25 sm:-bottom-8 sm:text-[9.5rem]">
         {glyph}
       </span>
 
-      <span className="absolute bottom-4 start-4 max-w-[70%] font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground">
+      <span className="tech-label absolute bottom-4 start-4 max-w-[70%]">
         {project.stack?.[0] ?? ''}
       </span>
     </div>

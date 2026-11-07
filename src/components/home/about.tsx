@@ -84,15 +84,16 @@ export function About() {
         </Reveal>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* Lead: first paragraph oversized like an opening title card. */}
           <Reveal className="lg:col-span-7">
-            <div className="max-w-[60ch] space-y-5">
+            <div className="max-w-[62ch] space-y-6">
               {profile.about[language].map((paragraph, index) => (
                 <p
                   key={paragraph}
                   className={
                     index === 0
-                      ? 'text-lg leading-relaxed text-foreground sm:text-xl'
-                      : 'text-base leading-relaxed text-muted-foreground'
+                      ? 'text-xl font-medium leading-relaxed text-foreground sm:text-2xl'
+                      : 'text-[0.9375rem] leading-relaxed text-muted-foreground'
                   }
                 >
                   {paragraph}
@@ -101,37 +102,44 @@ export function About() {
             </div>
           </Reveal>
 
+          {/* At-a-glance fact panel with an accent frame. */}
           <Reveal delay={80} className="lg:col-span-5">
-            <p className="eyebrow">{localize(COPY.glance, language)}</p>
-            <dl className="mt-5">
-              {COPY.rows.map((row) => (
-                <div
-                  key={row.id}
-                  className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 border-t border-border py-3.5"
-                >
-                  <dt className="text-xs leading-relaxed text-muted-foreground">
-                    {localize(row.label, language)}
-                  </dt>
-                  <dd className="text-sm font-medium leading-relaxed text-foreground">
-                    {localize(row.value, language)}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <div className="border border-border">
+              <div className="flex items-center justify-between border-b border-border px-5 py-3">
+                <p className="eyebrow">{localize(COPY.glance, language)}</p>
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+              </div>
+              <dl className="px-5 pb-2">
+                {COPY.rows.map((row) => (
+                  <div
+                    key={row.id}
+                    className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 border-b border-border/70 py-3.5 last:border-0"
+                  >
+                    <dt className="text-xs leading-relaxed text-muted-foreground">
+                      {localize(row.label, language)}
+                    </dt>
+                    <dd className="text-[0.8125rem] font-medium leading-relaxed text-foreground">
+                      {localize(row.value, language)}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-x-10 gap-y-8 sm:grid-cols-3">
+        {/* Principles: numbered editorial cells with red indices. */}
+        <div className="mt-16 grid sm:grid-cols-3">
           {COPY.principles.map((principle, index) => (
             <Reveal
               key={principle.title.en}
               delay={120 + index * 60}
-              className="border-t border-border pt-5"
+              className="border-t border-border px-0 py-8 sm:px-8 sm:py-10 sm:last:pe-0"
             >
-              <p className="font-mono text-[0.625rem] text-muted-foreground">
+              <p className="num-display text-2xl sm:text-3xl">
                 {String(index + 1).padStart(2, '0')}
               </p>
-              <h3 className="mt-3 text-base font-semibold tracking-tight">
+              <h3 className="mt-4 text-base font-semibold tracking-tight">
                 {localize(principle.title, language)}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

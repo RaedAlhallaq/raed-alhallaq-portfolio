@@ -1,8 +1,8 @@
-import { ArrowUp } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '@/components/shared/brand-icons'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
-import { profile, socials } from '@/data'
+import { contact, socials } from '@/data'
 import { navItems } from './nav-items'
 
 const SOCIAL_ICONS = {
@@ -19,87 +19,60 @@ export function AppFooter() {
   const profileSocials = socials.filter((social) => social.platform !== 'whatsapp')
 
   return (
-    <footer className="border-t border-border">
-      <div className="container-page py-12 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="text-base font-semibold tracking-tight">{localize(profile.name, language)}</p>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {localize(
-                { en: 'Co-Founder — Khibra Center for Training & Development · Hireland', ar: 'شريك مؤسس — مركز خبرة للتدريب والتطوير · Hireland' },
-                language,
-              )}
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-gilt" />
-              {language === 'ar' ? 'متاح للعمل والتعاون' : 'Available for work and collaboration'}
-            </p>
-          </div>
+    <footer className="border-t border-border bg-[color-mix(in_oklch,var(--card)_100%,transparent)]">
+      <div className="container-page flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4 sm:py-5">
+        <Link
+          to="/#home"
+          className="group inline-flex items-baseline gap-0.5 outline-none transition-opacity hover:opacity-75 focus-visible:ring-2 focus-visible:ring-accent/50"
+        >
+          <span className="display text-lg uppercase">Raed</span>
+          <span aria-hidden="true" className="text-[0.6rem] text-accent">
+            .
+          </span>
+        </Link>
 
-          <nav
-            aria-label={language === 'en' ? 'Footer' : 'الجزء السفلي'}
-            className="lg:col-span-3"
-          >
-            <p className="eyebrow">{language === 'en' ? 'Sections' : 'الأقسام'}</p>
-            <ul className="mt-4 space-y-2">
-              {sections.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={item.href}
-                    className="rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
-                  >
-                    {localize(item.label, language)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="lg:col-span-4">
-            <p className="eyebrow">{language === 'en' ? 'Elsewhere' : 'حسابات أخرى'}</p>
-            <ul className="mt-4 space-y-2">
-              {profileSocials.map((social) => {
-                const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
-                if (!Icon) return null
-                return (
-                  <li key={social.platform}>
-                    <a
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="inline-flex items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
-                    >
-                      <Icon className="size-3.5" aria-hidden="true" />
-                      {social.label}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">
-            © {year} {localize(profile.name, language)}.{' '}
-            {language === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
-          </p>
-          <div className="flex items-center gap-5">
-            <p className="text-xs text-muted-foreground">
-              {language === 'en'
-                ? 'Built with React, Vite and Tailwind CSS.'
-                : 'مبني باستخدام React و Vite و Tailwind CSS.'}
-            </p>
+        <nav aria-label={language === 'en' ? 'Footer' : 'روابط أسفل الصفحة'} className="flex flex-wrap items-center gap-x-5 gap-y-1">
+          {sections.map((item) => (
             <a
-              href="#home"
-              aria-label={language === 'en' ? 'Back to top' : 'العودة إلى الأعلى'}
-              className="inline-flex items-center gap-1.5 rounded-sm text-xs font-medium text-foreground outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-ring/40"
+              key={item.id}
+              href={item.href}
+              className="text-[0.6875rem] text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50"
             >
-              <ArrowUp className="size-3.5" aria-hidden="true" />
-              {language === 'en' ? 'Top' : 'أعلى'}
+              {localize(item.label, language)}
             </a>
-          </div>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-1">
+          {profileSocials.map((social) => {
+            const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
+            if (!Icon) return null
+            return (
+              <a
+                key={social.platform}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                aria-label={social.label}
+                className="inline-flex size-11 items-center justify-center text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50"
+              >
+                <Icon className="size-4" aria-hidden="true" />
+              </a>
+            )
+          })}
         </div>
+
+        <p className="w-full text-[0.625rem] leading-relaxed text-muted-foreground sm:w-auto">
+          © {year}{' '}
+          {localize(
+            {
+              en: 'Raed Alhallaq · Co-Founder — Khibra Center for Training & Development · Hireland',
+              ar: 'رائد الحلاق · شريك مؤسس — مركز خبرة للتدريب والتطوير · Hireland',
+            },
+            language,
+          )}
+          {contact.location ? ` · ${contact.location}` : ''}
+        </p>
       </div>
     </footer>
   )

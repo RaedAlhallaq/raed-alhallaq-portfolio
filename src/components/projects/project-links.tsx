@@ -30,7 +30,7 @@ export function ProjectLinks({ project, size = 'default' }: ProjectLinksProps) {
               className={cn(
                 'inline-flex items-center gap-1.5 font-medium outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50',
                 size === 'lg'
-                  ? 'rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground hover:border-gilt/50 hover:bg-muted'
+                  ? 'rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground hover:border-accent hover:bg-muted'
                   : 'rounded-md px-1.5 py-1 text-xs text-muted-foreground hover:bg-muted hover:text-foreground',
               )}
             >

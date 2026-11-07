@@ -1,7 +1,7 @@
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
 import { skills } from '@/data'
-import type { Skill, SkillCategory, SkillLevel } from '@/types'
+import type { Skill, SkillCategory } from '@/types'
 import { Section, SectionIntro } from './section'
 import { Reveal } from '@/components/shared/reveal'
 
@@ -15,30 +15,24 @@ const CATEGORY_LABEL: Record<SkillCategory, { en: string; ar: string }> = {
 const CATEGORY_ORDER: SkillCategory[] = ['frontend', 'backend', 'languages', 'tools']
 
 const COPY = {
-  eyebrow: { en: '03 — Skills', ar: '03 — المهارات' },
+  eyebrow: { en: '02 — Skills', ar: '02 — المهارات' },
   title: { en: 'A focused toolkit.', ar: 'صندوق أدوات مركّز.' },
   description: {
     en: 'The technologies I reach for most — grouped by how I use them, without invented ratings.',
     ar: 'التقنيات التي أعتمد عليها أكثر — مجمّعة حسب طريقة استخدامي لها، دون تقييمات مُختلقة.',
   },
-  legend: { en: 'Level reflects depth of use', ar: 'المستوى يعكس عمق الاستخدام' },
 }
 
-const LEVEL_LABEL: Record<SkillLevel, { en: string; ar: string }> = {
-  core: { en: 'Core', ar: 'أساسي' },
-  working: { en: 'Working', ar: 'عملي' },
-  familiar: { en: 'Familiar', ar: 'مألوف' },
-}
-
-function SkillRow({ skill }: { skill: Skill }) {
+function SkillTag({ skill }: { skill: Skill }) {
   const { language } = useLanguage()
-  const level = skill.level ?? 'core'
 
   return (
-    <li className="flex items-baseline justify-between gap-4 border-b border-border/70 py-2.5">
-      <span className="text-sm text-foreground">{localize(skill.name, language)}</span>
-      <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.1em] text-muted-foreground">
-        {localize(LEVEL_LABEL[level], language)}
+    <li>
+      <span
+        className="inline-flex min-h-10 items-center border border-border px-3 text-sm text-foreground outline-none transition-colors hover:border-accent hover:bg-accent hover:text-white focus-visible:border-accent focus-visible:bg-accent focus-visible:text-white"
+        title={localize(skill.name, language)}
+      >
+        {localize(skill.name, language)}
       </span>
     </li>
   )
@@ -64,29 +58,28 @@ export function Skills() {
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Each group is a bordered cell in one continuous editorial grid. */}
+        <div className="mt-14 grid border-s border-t border-border sm:grid-cols-2 lg:grid-cols-4">
           {grouped.map((group, index) => (
-            <Reveal key={group.category} delay={index * 50}>
-              <div className="border-t border-border pt-5">
-                <h3 className="flex items-baseline justify-between gap-3 text-sm font-semibold tracking-tight">
-                  {localize(CATEGORY_LABEL[group.category], language)}
-                  <span className="font-mono text-[0.625rem] font-normal text-muted-foreground">
-                    {String(group.items.length).padStart(2, '0')}
-                  </span>
-                </h3>
-                <ul className="mt-3">
-                  {group.items.map((skill) => (
-                    <SkillRow key={skill.id} skill={skill} />
-                  ))}
-                </ul>
-              </div>
+            <Reveal
+              key={group.category}
+              delay={index * 50}
+              className="min-h-44 border-b border-e border-border p-6"
+            >
+              <h3 className="flex items-baseline justify-between gap-3 text-sm font-semibold tracking-tight">
+                {localize(CATEGORY_LABEL[group.category], language)}
+                <span className="font-mono text-[0.625rem] font-normal text-muted-foreground">
+                  {String(group.items.length).padStart(2, '0')}
+                </span>
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <SkillTag key={skill.id} skill={skill} />
+                ))}
+              </ul>
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={120}>
-          <p className="mt-8 text-xs text-muted-foreground">{localize(COPY.legend, language)}</p>
-        </Reveal>
       </div>
     </Section>
   )
