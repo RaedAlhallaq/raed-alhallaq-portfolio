@@ -10,7 +10,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, LocalizedString> = {
 
 export const LINK_TYPE_LABELS: Record<ProjectLinkType, LocalizedString> = {
   'live-demo': { en: 'Live demo', ar: 'عرض مباشر' },
-  repository: { en: 'Repository', ar: 'المستودع' },
+  repository: { en: 'Source', ar: 'الكود المصدري' },
 }
 
 export const ALL_CATEGORIES_LABEL: LocalizedString = { en: 'All', ar: 'الكل' }
@@ -32,11 +32,11 @@ export function ownershipEvidenceLabel(project: Project, language: LocaleCode): 
   return localize(OWNERSHIP_EVIDENCE_LABELS.team, language)
 }
 
-export const VIEW_DETAILS_LABEL: LocalizedString = { en: 'View details', ar: 'عرض التفاصيل' }
+export const VIEW_DETAILS_LABEL: LocalizedString = { en: 'View case study', ar: 'اقرأ دراسة الحالة' }
 
 export const BACK_TO_PROJECTS_LABEL: LocalizedString = {
-  en: 'Back to all projects',
-  ar: 'العودة إلى كل المشاريع',
+  en: 'Back to selected work',
+  ar: 'العودة إلى الأعمال المختارة',
 }
 
 export const PROJECT_NOT_FOUND_TITLE: LocalizedString = {

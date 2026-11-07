@@ -30,10 +30,10 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      <ProjectsPreview />
       <About />
       <Skills />
       <Journey />
-      <ProjectsPreview />
       <Contact />
     </>
   )

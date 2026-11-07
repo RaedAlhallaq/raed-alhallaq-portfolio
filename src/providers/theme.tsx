@@ -25,8 +25,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>(readStoredTheme)
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
+    const root = document.documentElement
+
+    root.classList.add('theme-switching')
+    root.classList.toggle('dark', theme === 'dark')
     window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+
+    // Force the new palette to resolve while transitions are disabled,
+    // so nothing is left half-way between the two themes.
+    void window.getComputedStyle(document.body).backgroundColor
+    root.classList.remove('theme-switching')
   }, [theme])
 
   const setTheme = useCallback((next: ThemeMode) => setThemeState(next), [])

@@ -18,14 +18,18 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
   return (
     <div
       role="group"
-      aria-label={localize({ en: 'Filter projects by category', ar: 'تصفية المشاريع حسب الفئة' }, language)}
+      aria-label={localize(
+        { en: 'Filter projects by category', ar: 'تصفية المشاريع حسب الفئة' },
+        language,
+      )}
     >
-      <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <ul className="flex flex-wrap items-center gap-x-1 gap-y-1">
         {options.map((category) => {
           const isActive = category === active
           const label = category
             ? localize(CATEGORY_LABELS[category], language)
             : localize(ALL_CATEGORIES_LABEL, language)
+
           return (
             <li key={category ?? 'all'}>
               <button
@@ -33,12 +37,19 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
                 aria-pressed={isActive}
                 onClick={() => onSelect(category)}
                 className={cn(
-                  'rounded-sm border-b py-0.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/40',
+                  'inline-flex min-h-11 items-center gap-2 px-2.5 text-sm transition-colors',
                   isActive
-                    ? 'border-foreground font-medium text-foreground'
-                    : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
                 )}
               >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    'size-1 bg-accent transition-opacity',
+                    isActive ? 'opacity-100' : 'opacity-0',
+                  )}
+                />
                 {label}
               </button>
             </li>

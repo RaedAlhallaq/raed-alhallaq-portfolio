@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom'
+import { ArrowUp, Mail } from 'lucide-react'
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '@/components/shared/brand-icons'
 import { useLanguage } from '@/providers/language'
 import { localize } from '@/lib/localize'
-import { contact, socials } from '@/data'
-import { navItems } from './nav-items'
+import { contact, profile, socials } from '@/data'
 
 const SOCIAL_ICONS = {
   github: GithubIcon,
@@ -11,68 +10,86 @@ const SOCIAL_ICONS = {
   instagram: InstagramIcon,
 } as const
 
+const COPY = {
+  role: { en: 'Front-End Developer (React & TypeScript)', ar: 'مطوّر واجهات أمامية (React وTypeScript)' },
+  available: { en: 'Available for front-end work', ar: 'متاح للعمل في تطوير الواجهات' },
+  built: { en: 'Built with React, Vite and Tailwind CSS.', ar: 'مبني باستخدام React وVite وTailwind CSS.' },
+  top: { en: 'Back to top', ar: 'العودة إلى الأعلى' },
+  rights: { en: 'All rights reserved.', ar: 'جميع الحقوق محفوظة.' },
+}
+
 export function AppFooter() {
   const { language } = useLanguage()
 
   const year = new Date().getFullYear()
-  const sections = navItems.filter((item) => item.id !== 'home')
   const profileSocials = socials.filter((social) => social.platform !== 'whatsapp')
 
   return (
-    <footer className="border-t border-border bg-[color-mix(in_oklch,var(--card)_100%,transparent)]">
-      <div className="container-page flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4 sm:py-5">
-        <Link
-          to="/#home"
-          className="group inline-flex items-baseline gap-0.5 outline-none transition-opacity hover:opacity-75 focus-visible:ring-2 focus-visible:ring-accent/50"
-        >
-          <span className="display text-lg uppercase">Raed</span>
-          <span aria-hidden="true" className="text-[0.6rem] text-accent">
-            .
-          </span>
-        </Link>
-
-        <nav aria-label={language === 'en' ? 'Footer' : 'روابط أسفل الصفحة'} className="flex flex-wrap items-center gap-x-5 gap-y-1">
-          {sections.map((item) => (
+    <footer className="border-t border-line">
+      <div className="container-page py-12 sm:py-14">
+        <div className="grid gap-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <div>
             <a
-              key={item.id}
-              href={item.href}
-              className="text-[0.6875rem] text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50"
+              href="#home"
+              className="font-display text-lg font-extrabold uppercase tracking-[0.14em] transition-colors hover:text-accent"
             >
-              {localize(item.label, language)}
+              {localize(profile.name, language)}
             </a>
-          ))}
-        </nav>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              {localize(COPY.role, language)}
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2.5">
+              <span className="status-dot" aria-hidden="true" />
+              <span className="label-mono">{localize(COPY.available, language)}</span>
+            </p>
+          </div>
 
-        <div className="flex items-center gap-1">
-          {profileSocials.map((social) => {
-            const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
-            if (!Icon) return null
-            return (
+          <ul className="flex flex-wrap items-center gap-x-1 gap-y-2 sm:justify-end">
+            {profileSocials.map((social) => {
+              const Icon = SOCIAL_ICONS[social.platform as keyof typeof SOCIAL_ICONS]
+              if (!Icon) return null
+              return (
+                <li key={social.platform}>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    aria-label={social.handle ? `${social.label}: ${social.handle}` : social.label}
+                    className="inline-flex min-h-11 items-center gap-2 px-3 text-sm text-muted-foreground transition-colors hover:text-accent"
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                    <span>{social.label}</span>
+                  </a>
+                </li>
+              )
+            })}
+            <li>
               <a
-                key={social.platform}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                aria-label={social.label}
-                className="inline-flex size-11 items-center justify-center text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50"
+                href={`mailto:${contact.email}`}
+                className="inline-flex min-h-11 items-center gap-2 px-3 text-sm text-muted-foreground transition-colors hover:text-accent"
               >
-                <Icon className="size-4" aria-hidden="true" />
+                <Mail className="size-4" aria-hidden="true" />
+                <span>{language === 'en' ? 'Email' : 'البريد'}</span>
               </a>
-            )
-          })}
+            </li>
+          </ul>
         </div>
 
-        <p className="w-full text-[0.625rem] leading-relaxed text-muted-foreground sm:w-auto">
-          © {year}{' '}
-          {localize(
-            {
-              en: 'Raed Alhallaq · Co-Founder — Khibra Center for Training & Development · Hireland',
-              ar: 'رائد الحلاق · شريك مؤسس — مركز خبرة للتدريب والتطوير · Hireland',
-            },
-            language,
-          )}
-          {contact.location ? ` · ${contact.location}` : ''}
-        </p>
+        <div className="mt-10 flex flex-col gap-4 border-t border-line pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {localize(profile.name, language)}. {localize(COPY.rights, language)}
+          </p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p>{localize(COPY.built, language)}</p>
+            <a
+              href="#home"
+              className="inline-flex min-h-11 items-center gap-1.5 text-foreground transition-colors hover:text-accent"
+            >
+              <ArrowUp className="size-3.5" aria-hidden="true" />
+              {localize(COPY.top, language)}
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   )

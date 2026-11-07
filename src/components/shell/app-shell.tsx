@@ -26,7 +26,7 @@ export function AppShell() {
     <div className="flex min-h-svh flex-col bg-background text-foreground">
       <a
         href="#main-content"
-        className="sr-only inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm text-primary-foreground focus:not-sr-only focus:absolute focus:top-3 focus:start-3 focus:z-50 focus:ring-3 focus:ring-ring/50"
+        className="sr-only inline-flex items-center border border-line-strong bg-background px-4 py-3 text-sm font-medium text-foreground focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[70]"
       >
         {language === 'en' ? 'Skip to content' : 'تخطَّ إلى المحتوى'}
       </a>

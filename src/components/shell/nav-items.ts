@@ -6,13 +6,18 @@ export interface NavItem {
   label: LocalizedString
 }
 
+/**
+ * Primary navigation. Work leads, because the projects are the portfolio.
+ * The contact item is rendered as a dedicated call-to-action in the header.
+ */
 export const navItems: NavItem[] = [
-  { id: 'home', href: '/#home', label: { en: 'Home', ar: 'الرئيسية' } },
+  { id: 'projects', href: '/#projects', label: { en: 'Work', ar: 'الأعمال' } },
   { id: 'about', href: '/#about', label: { en: 'About', ar: 'نبذة' } },
   { id: 'skills', href: '/#skills', label: { en: 'Skills', ar: 'المهارات' } },
   { id: 'journey', href: '/#journey', label: { en: 'Journey', ar: 'المسيرة' } },
-  { id: 'projects', href: '/#projects', label: { en: 'Projects', ar: 'المشاريع' } },
   { id: 'contact', href: '/#contact', label: { en: 'Contact', ar: 'تواصل' } },
 ]
 
 export const siteSectionIds = navItems.map((item) => item.id)
+
+export const headerNavItems = navItems.filter((item) => item.id !== 'contact')

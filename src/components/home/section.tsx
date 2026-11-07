@@ -7,15 +7,10 @@ interface SectionProps {
   children: ReactNode
 }
 
-/**
- * Full-width home section wrapper bordered like a film slide, with a stable anchor id.
- */
+/** Full-width home section with a stable anchor id and generous rhythm. */
 export function Section({ id, className, children }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={cn('scroll-mt-[66px] border-b border-border py-10 sm:py-12 lg:py-14', className)}
-    >
+    <section id={id} className={cn('section-shell', className)}>
       {children}
     </section>
   )
@@ -25,30 +20,47 @@ interface SectionIntroProps {
   eyebrow?: string
   title: string
   description?: string
-  action?: ReactNode
+  meta?: string
   className?: string
   id?: string
 }
 
 /**
- * Section header: small red-dashed eyebrow, tight bold heading, and an
- * optional trailing CTA aligned to the baseline, like the reference layout.
+ * Editorial section opener: hairline + index on the left, a large display
+ * heading spanning the grid, and supporting copy in a narrow companion column.
  */
-export function SectionIntro({ eyebrow, title, description, action, className, id }: SectionIntroProps) {
+export function SectionIntro({
+  eyebrow,
+  title,
+  description,
+  meta,
+  className,
+  id,
+}: SectionIntroProps) {
   return (
-    <div className={cn('flex flex-wrap items-end justify-between gap-x-8 gap-y-4', className)}>
-      <div className="max-w-3xl">
-        {eyebrow ? <p className="eyebrow mb-3">{eyebrow}</p> : null}
-        <h2 id={id} className="heading-section max-w-2xl">
+    <div className={className}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-line pt-4">
+        {eyebrow ? (
+          <p className="label-mono inline-flex items-center gap-3">
+            <span aria-hidden="true" className="size-1 bg-accent" />
+            {eyebrow}
+          </p>
+        ) : (
+          <span />
+        )}
+        {meta ? <p className="label-mono">{meta}</p> : null}
+      </div>
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+        <h2 id={id} className="display-lg max-w-4xl lg:col-span-8">
           {title}
         </h2>
         {description ? (
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+          <p className="text-lead max-w-md text-muted-foreground lg:col-span-4">
             {description}
           </p>
         ) : null}
       </div>
-      {action ? <div className="shrink-0">{action}</div> : null}
     </div>
   )
 }

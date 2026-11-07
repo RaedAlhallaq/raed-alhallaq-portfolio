@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { useLanguage } from '@/providers/language'
 import { useDocumentMeta } from '@/hooks/use-document-meta'
 import { localize } from '@/lib/localize'
@@ -28,19 +28,16 @@ const COPY = {
   category: { en: 'Category', ar: 'الفئة' },
   ownership: { en: 'Ownership', ar: 'الملكية' },
   role: { en: 'Role', ar: 'الدور' },
-  notFound: { en: '404', ar: '٤٠٤' },
+  caseLabel: { en: 'Case', ar: 'حالة' },
 }
 
-function BackLink({ label, className }: { label: string; className?: string }) {
+function BackLink({ label }: { label: string }) {
   return (
     <Link
       to="/#projects"
-      className={
-        className ??
-        'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/40'
-      }
+      className="group inline-flex min-h-11 items-center gap-2 font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-accent"
     >
-      <ArrowLeft className="size-4 shrink-0 rtl:rotate-180" aria-hidden="true" />
+      <ArrowLeft className="size-4 shrink-0 transition-transform group-hover:-translate-x-0.5 rtl:rotate-180 rtl:group-hover:translate-x-0.5" aria-hidden="true" />
       {label}
     </Link>
   )
@@ -54,12 +51,12 @@ function ProjectNotFound() {
   })
 
   return (
-    <section className="container-page flex-1 py-20 sm:py-28">
-      <p className="num-display display-hero mt-2 select-none opacity-80">
-        {localize(COPY.notFound, language)}
+    <section className="container-page flex-1 pb-24 pt-[7.5rem] sm:pt-[9rem]">
+      <p className="label-mono text-accent">404</p>
+      <h1 className="display-xl mt-6 max-w-3xl">{localize(PROJECT_NOT_FOUND_TITLE, language)}</h1>
+      <p className="mt-5 max-w-xl text-muted-foreground">
+        {localize(PROJECT_NOT_FOUND_TEXT, language)}
       </p>
-      <h1 className="heading-section mt-6">{localize(PROJECT_NOT_FOUND_TITLE, language)}</h1>
-      <p className="mt-3 text-muted-foreground">{localize(PROJECT_NOT_FOUND_TEXT, language)}</p>
       <div className="mt-8">
         <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
       </div>
@@ -78,28 +75,35 @@ function MoreProjects({ current }: { current: Project }) {
   if (nextProjects.length === 0) return null
 
   return (
-    <div className="mt-16">
-      <h2 className="eyebrow">{localize(COPY.moreProjects, language)}</h2>
-      <ul className="mt-4">
+    <div className="mt-20 border-t border-line pt-10">
+      <div className="flex flex-wrap items-baseline justify-between gap-4">
+        <h2 className="display-lg">{localize(COPY.moreProjects, language)}</h2>
+        <span className="label-mono">{String(nextProjects.length).padStart(2, '0')}</span>
+      </div>
+
+      <ul className="mt-8">
         {nextProjects.map((project) => (
-          <li key={project.slug} className="border-t border-border last:border-b">
+          <li key={project.slug} className="border-t border-line last:border-b">
             <Link
               to={`/projects/${project.slug}`}
-              className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-4 py-4 outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-accent/40"
+              className="group grid grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 py-5 sm:grid-cols-[3rem_minmax(0,1fr)_12rem_auto] sm:gap-4"
             >
-              <span className="num-display font-mono text-sm">
+              <span className="label-mono tabular-nums">
                 {String(stableProjectIndex(project.slug)).padStart(2, '0')}
               </span>
               <span className="min-w-0">
-                <span className="block text-base font-medium tracking-tight transition-colors group-hover:text-accent">
+                <span className="display-sm link-underline block transition-colors group-hover:text-accent">
                   {localize(project.title, language)}
                 </span>
-                <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                <span className="mt-1 block truncate text-xs text-muted-foreground">
                   {localize(project.summary, language)}
                 </span>
               </span>
-              <ArrowRight
-                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-accent rtl:rotate-180 rtl:group-hover:-translate-x-1"
+              <span className="label-mono hidden truncate normal-case tracking-normal sm:block">
+                {project.stack?.join(' · ')}
+              </span>
+              <ArrowUpRight
+                className="size-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:text-accent rtl:-scale-x-100"
                 aria-hidden="true"
               />
             </Link>
@@ -139,87 +143,93 @@ function ProjectDetailView({ project }: { project: Project }) {
   }
 
   return (
-    <article className="container-page flex-1 py-10 sm:py-14">
-      <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
+    <article className="flex-1 pb-20 pt-[6.75rem] sm:pb-24 sm:pt-[8rem]">
+      <div className="container-page">
+        <BackLink label={localize(BACK_TO_PROJECTS_LABEL, language)} />
 
-      <Reveal>
-        {/* Catalogue strip: red index + category rail. */}
-        <div className="mt-8 max-w-4xl">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-            <span className="num-display font-mono text-sm">
-              {String(index).padStart(2, '0')}
-            </span>
-            <span aria-hidden="true">·</span>
-            <span>{categoryLabel ?? localize(COPY.project, language)}</span>
-            <span aria-hidden="true">·</span>
-            <span>{ownershipLabel}</span>
-            {hasDemo ? (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>{localize(LINK_TYPE_LABELS['live-demo'], language)}</span>
-              </>
-            ) : null}
-          </div>
+        <Reveal>
+          <header className="mt-8 border-t border-line pt-6">
+            <div className="label-mono flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="text-accent">
+                {localize(COPY.caseLabel, language)} {String(index).padStart(2, '0')}
+              </span>
+              <span aria-hidden="true">/</span>
+              <span>{categoryLabel ?? localize(COPY.project, language)}</span>
+              <span aria-hidden="true">·</span>
+              <span>{ownershipLabel}</span>
+              {hasDemo ? (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>{localize(LINK_TYPE_LABELS['live-demo'], language)}</span>
+                </>
+              ) : null}
+            </div>
 
-          <h1 className="display-title mt-4">{title}</h1>
+            <h1 className="display-xl mt-5 max-w-5xl">{title}</h1>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {localize(project.summary, language)}
-          </p>
-
-          {project.stack && project.stack.length > 0 ? (
-            <p className="tech-label mt-5">{project.stack.join(' · ')}</p>
-          ) : null}
-
-          <div className="mt-7">
-            <ProjectLinks project={project} size="lg" />
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal delay={60}>
-        <ProjectVisual
-          project={project}
-          index={index}
-          className="mt-10 aspect-[16/10] w-full sm:aspect-[21/9]"
-        />
-      </Reveal>
-
-      <div className="mt-12 grid gap-10 border-t border-border pt-10 lg:grid-cols-12">
-        <Reveal className="lg:col-span-8">
-          <h2 className="eyebrow">{localize(COPY.overview, language)}</h2>
-          <div className="mt-4 max-w-[65ch] space-y-4 text-base leading-relaxed text-muted-foreground">
-            {project.details ? (
-              localize(project.details, language)
-                .split('\n')
-                .filter((line) => line.trim().length > 0)
-                .map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-            ) : (
-              <p>{localize(project.summary, language)}</p>
-            )}
-
-            {project.note ? (
-              <p className="border-s-2 border-accent ps-4 text-sm text-muted-foreground">
-                {localize(project.note, language)}
+            <div className="mt-7 grid gap-6 lg:grid-cols-12 lg:gap-10">
+              <p className="text-lead max-w-2xl text-muted-foreground lg:col-span-8">
+                {localize(project.summary, language)}
               </p>
-            ) : null}
-          </div>
+              {project.stack && project.stack.length > 0 ? (
+                <p className="label-mono normal-case leading-relaxed tracking-normal lg:col-span-4 lg:text-end">
+                  {project.stack.join(' · ')}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="mt-8">
+              <ProjectLinks project={project} size="lg" />
+            </div>
+          </header>
         </Reveal>
 
-        <Reveal delay={80} className="lg:col-span-4">
-          <h2 className="eyebrow">{localize(PROJECT_INFORMATION_LABEL, language)}</h2>
-          <dl className="mt-4">
-            {factRows.map((row) => (
-              <div key={row.dt} className="grid gap-1 border-t border-border py-3">
-                <dt className="text-xs text-muted-foreground">{row.dt}</dt>
-                <dd className="text-sm font-medium text-foreground">{row.dd}</dd>
-              </div>
-            ))}
-          </dl>
+        <Reveal delay={60}>
+          <ProjectVisual
+            project={project}
+            index={index}
+            className="mt-12 aspect-[16/10] w-full sm:aspect-[2/1]"
+          />
         </Reveal>
+
+        <div className="mt-14 grid gap-10 border-t border-line pt-10 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-8">
+            <h2 className="label-mono">{localize(COPY.overview, language)}</h2>
+            <div className="prose-editorial mt-5 max-w-[65ch] text-base leading-[1.8] text-muted-foreground sm:text-lg">
+              {project.details ? (
+                localize(project.details, language)
+                  .split('\n')
+                  .filter((line) => line.trim().length > 0)
+                  .map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+              ) : (
+                <p>{localize(project.summary, language)}</p>
+              )}
+
+              {project.note ? (
+                <p className="mt-6 border-s-2 border-accent ps-4 text-sm text-muted-foreground">
+                  {localize(project.note, language)}
+                </p>
+              ) : null}
+            </div>
+          </Reveal>
+
+          <Reveal delay={80} className="lg:col-span-4">
+            <div className="border border-line bg-surface p-6 lg:sticky lg:top-24">
+              <h2 className="label-mono">{localize(PROJECT_INFORMATION_LABEL, language)}</h2>
+              <dl className="mt-4">
+                {factRows.map((row) => (
+                  <div key={row.dt} className="grid gap-1 border-t border-line py-3">
+                    <dt className="label-mono">{row.dt}</dt>
+                    <dd className="text-sm font-medium leading-relaxed text-foreground">{row.dd}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Reveal>
+        </div>
+
+        <MoreProjects current={project} />
       </div>
-
-      <MoreProjects current={project} />
     </article>
   )
 }
