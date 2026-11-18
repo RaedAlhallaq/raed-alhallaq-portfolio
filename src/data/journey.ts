@@ -29,8 +29,8 @@ export const experience: ExperienceEntry[] = [
   {
     id: 'khibra-cofounder',
     role: {
-      en: 'Co-Founder',
-      ar: 'شريك مؤسس',
+      en: 'Co-Founder & Technical/Training Supervisor',
+      ar: 'شريك مؤسس ومشرف تقني وتدريبي',
     },
     organization: {
       en: 'Khibra Center for Training and Development',
@@ -39,19 +39,19 @@ export const experience: ExperienceEntry[] = [
     type: 'work',
     current: true,
     period: {
-      en: 'Present',
-      ar: 'حتى الآن',
+      en: 'Oct 2026 — Present',
+      ar: 'أكتوبر 2026 — حتى الآن',
     },
     summary: {
-      en: 'Co-founding Khibra, a center for training and development.',
-      ar: 'المشاركة في تأسيس مركز خبرة، وهو مركز للتدريب والتطوير.',
+      en: 'Co-founding Khibra, a center for training and digital-knowledge development, and supervising its technical and training work.',
+      ar: 'المشاركة في تأسيس مركز خبرة للتدريب وتطوير المعرفة الرقمية، والإشراف على عمله التقني والتدريبي.',
     },
   },
   {
     id: 'hireland-cofounder',
     role: {
-      en: 'Co-Founder',
-      ar: 'شريك مؤسس',
+      en: 'Co-Founder & Front-End Developer',
+      ar: 'شريك مؤسس ومطوّر واجهات أمامية',
     },
     organization: {
       en: 'Hireland',
@@ -60,49 +60,33 @@ export const experience: ExperienceEntry[] = [
     type: 'work',
     current: true,
     period: {
-      en: 'Present',
-      ar: 'حتى الآن',
+      en: 'Sep 2026 — Present',
+      ar: 'سبتمبر 2026 — حتى الآن',
     },
     summary: {
-      en: 'Co-founding Hireland and building its front-end experience.',
-      ar: 'المشاركة في تأسيس Hireland وبناء تجربة واجهاتها الأمامية.',
+      en: 'Co-founded Hireland, an AI-powered platform that matches freelance opportunities with developers’ CVs and skills. Building scalable React and TypeScript interfaces with reusable, accessible RTL/LTR components in a cross-functional team.',
+      ar: 'شاركت في تأسيس Hireland، منصة تعتمد على الذكاء الاصطناعي لمطابقة فرص العمل الحر مع سير المطوّرين ومهاراتهم. أبني واجهات React وTypeScript قابلة للتوسّع، ومكوّنات قابلة لإعادة الاستخدام تدعم RTL/LTR وإمكانية الوصول، ضمن فريق متعدد التخصصات.',
     },
   },
   {
-    id: 'hireland-frontend',
+    id: 'junior-frontend-freelance',
     role: {
-      en: 'Front-End Developer (React & TypeScript)',
-      ar: 'مطوّر واجهات أمامية (React وTypeScript)',
+      en: 'Junior Front-End Developer',
+      ar: 'مطوّر واجهات أمامية',
     },
     organization: {
-      en: 'Hireland',
-      ar: 'Hireland',
+      en: 'Personal Projects · Freelance',
+      ar: 'مشاريع شخصية · عمل حر',
     },
     type: 'work',
     current: true,
     period: {
-      en: 'Present',
-      ar: 'حتى الآن',
+      en: 'Sep 2024 — Present',
+      ar: 'سبتمبر 2024 — حتى الآن',
     },
     summary: {
-      en: 'Building Hireland’s interfaces with React and TypeScript.',
-      ar: 'بناء واجهات Hireland باستخدام React وTypeScript.',
-    },
-  },
-  {
-    id: 'frontend-developer-online',
-    role: {
-      en: 'Frontend Developer (Online)',
-      ar: 'مطوّر واجهات أمامية (عن بُعد)',
-    },
-    organization: {
-      en: 'Online',
-      ar: 'عن بُعد',
-    },
-    type: 'work',
-    period: {
-      en: 'Jan 2021 — Jan 2022',
-      ar: 'يناير 2021 — يناير 2022',
+      en: 'Building personal projects to master front-end technologies and strengthen software-engineering foundations: responsive HTML/CSS interfaces, interactive ES6+ components, clean code, and UI/UX practice.',
+      ar: 'أبني مشاريع شخصية لإتقان تقنيات الواجهات الأمامية وتقوية أساسيات هندسة البرمجيات: واجهات HTML/CSS متجاوبة، ومكوّنات تفاعلية بـ ES6+، وكود نظيف، وتطبيق لمبادئ UI/UX.',
     },
   },
   {

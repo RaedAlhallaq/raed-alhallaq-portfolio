@@ -32,6 +32,12 @@ export const skills: Skill[] = [
     level: 'core',
   },
   {
+    id: 'responsive-design',
+    name: { en: 'Responsive Web Design', ar: 'تصميم الويب المتجاوب' },
+    category: 'frontend',
+    level: 'core',
+  },
+  {
     id: 'rtl',
     name: { en: 'RTL interfaces', ar: 'واجهات RTL' },
     category: 'frontend',

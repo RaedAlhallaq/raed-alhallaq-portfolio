@@ -447,4 +447,35 @@ export const projects: Project[] = [
     ],
     date: { status: 'unavailable' },
   },
+  {
+    slug: 'taskflow',
+    title: {
+      en: 'TaskFlow',
+      ar: 'TaskFlow',
+    },
+    category: 'full-stack',
+    summary: {
+      en: 'Dockerized full-stack task manager with a Laravel + Livewire web app and a Go REST API.',
+      ar: 'مدير مهام متكامل يعمل داخل حاويات، بواجهة Laravel و Livewire وواجهة برمجية بـ Go.',
+    },
+    details: {
+      en: 'TaskFlow has two parts: a Laravel + Livewire task manager for creating, editing, deleting, searching, and filtering tasks without page reloads, and a books module backed by a Go REST API. It runs through Docker Compose with multi-stage builds and health checks, with GitHub Actions for CI. Built as an OS Lab assignment.',
+      ar: 'يتكوّن TaskFlow من جزأين: مدير مهام بـ Laravel و Livewire لإنشاء المهام وتعديلها وحذفها والبحث فيها وتصفيتها دون إعادة تحميل الصفحة، ووحدة كتب تعتمد على واجهة برمجية بـ Go. يعمل عبر Docker Compose ببناء متعدد المراحل وفحوصات جاهزية، مع GitHub Actions للتكامل المستمر. بُني ضمن واجب مختبر نظم التشغيل.',
+    },
+    ownership: { kind: 'individual' },
+    secondary: true,
+    stack: ['Laravel', 'PHP', 'Livewire', 'Go', 'Docker'],
+    images: [],
+    links: [
+      {
+        type: 'repository',
+        url: 'https://github.com/RaedAlhallaq/TaskFlow',
+      },
+    ],
+    date: { status: 'unavailable' },
+    note: {
+      en: 'Built for OS Lab — Assignment #2 (Docker & GitHub).',
+      ar: 'بُني ضمن مختبر نظم التشغيل — الواجب الثاني (Docker و GitHub).',
+    },
+  },
 ]
